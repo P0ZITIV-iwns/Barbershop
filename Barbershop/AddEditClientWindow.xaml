@@ -1,0 +1,73 @@
+﻿<Window x:Class="Barbershop.AddEditClientWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Barbershop"
+        mc:Ignorable="d"
+        Title="Клиент" Height="370" Width="300"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.27*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.27*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" x:Name="headerWindow" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <!--<TextBlock Grid.Row="0" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left">Наименование</TextBlock>
+            <TextBox Grid.Row="0" x:Name="nameView" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="5" Height="30"></TextBox>-->
+
+            <TextBox Grid.Row="0" x:Name="firstNameTextBox" Margin="25 10" Style="{StaticResource PlaceholderTextBoxStyle}"/>
+            <TextBlock Grid.Row="0" Margin="37 0" VerticalAlignment="Center" IsHitTestVisible="False" FontSize="14" Text="Введите имя" Foreground="Black" Opacity="0.6">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text, ElementName=firstNameTextBox}" Value="">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+
+            <TextBox Grid.Row="1" x:Name="lastNameTextBox" Margin="25 10" Style="{StaticResource PlaceholderTextBoxStyle}"/>
+            <TextBlock Grid.Row="1" Margin="37 0" VerticalAlignment="Center" IsHitTestVisible="False" FontSize="14" Text="Введите фамилию" Foreground="Black" Opacity="0.6">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text, ElementName=lastNameTextBox}" Value="">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+
+            <TextBox Grid.Row="2" x:Name="phoneTextBox" Margin="25 10" Style="{StaticResource PlaceholderTextBoxStyle}"/>
+            <TextBlock Grid.Row="2" Margin="37 0" VerticalAlignment="Center" IsHitTestVisible="False" FontSize="14" Text="Введите телефон" Foreground="Black" Opacity="0.6">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text, ElementName=phoneTextBox}" Value="">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </Grid>
+
+        <Button Grid.Row="2" x:Name="saveEditButton" Content="Сохранить" Visibility="Collapsed" Margin="90 10" Style="{StaticResource LogInButton}"/>
+        <Button Grid.Row="2" x:Name="saveAddButton" Content="Добавить" Visibility="Collapsed" Margin="90 10" Style="{StaticResource LogInButton}"/>
+
+    </Grid>
+</Window>

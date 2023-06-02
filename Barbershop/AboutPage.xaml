@@ -1,0 +1,54 @@
+﻿<Page x:Class="Barbershop.AboutPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Barbershop"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1280"
+      Title="AboutPage">
+
+    <Grid Background="White" x:Name="aboutMainSide">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.5*" MaxHeight="200"/>
+            <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
+        <Image Grid.Row="0" Source="Images/Logo.png"/>
+
+        <!--<DockPanel Grid.Row="1" LastChildFill="True" VerticalAlignment="Top" HorizontalAlignment="Center">
+            <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center" TextAlignment="Center" Margin="40 0" FontSize="14" Text="Приветствуем Вас на странице 'О нас' парикмахерской VELIAS! Наша студия представляет собой настоящее место для ценителей стиля и красоты. Мы стремимся подчеркнуть натуральную красоту каждого нашего клиента и помогаем им создавать уникальный и индивидуальный образ."/>
+            <Image DockPanel.Dock="Top" MaxHeight="50" Source="Images/Logo.png"/>
+            <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center" TextAlignment="Center" Margin="40 0" FontSize="14" Text="Наша парикмахерская сочетает современные технологии и традиционные методы в уходе за волосами и кожей головы. Наши мастера имеют профессиональное образование и обладают большим опытом работы, что позволяет им выбрать наиболее эффективный способ ухода за вашими волосами."/>
+            <Image DockPanel.Dock="Top" MaxHeight="50" Source="Images/Logo.png"/>
+            <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center" TextAlignment="Center" Margin="40 0" FontSize="14" Text="В нашей парикмахерской вы можете насладиться атмосферой спокойствия и комфорта. Наши интерьеры выполнены в минималистичном стиле с использованием только черных и белых цветов, что создает элегантную и стильную обстановку."/>
+            <Image DockPanel.Dock="Top" MaxHeight="50" Source="Images/Logo.png"/>
+            <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center" TextAlignment="Center" Margin="40 0" FontSize="14" Text="VELIAS - это идеальное место для тех, кто хочет почувствовать себя особенным и узнать, как подчеркнуть свою индивидуальность. Мы всегда готовы помочь нашим клиентам почувствовать себя уверенно и прекрасно выглядеть!"/>
+        </DockPanel>-->
+
+        <DockPanel Grid.Row="1" LastChildFill="True" VerticalAlignment="Top" HorizontalAlignment="Center">
+            <Viewbox DockPanel.Dock="Top" Stretch="Uniform">
+                <StackPanel>
+                    <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Margin="40 0" FontSize="14" Width="600" Text="Приветствуем Вас на странице 'О нас' парикмахерской VELIAS! Наша студия представляет собой настоящее место для ценителей стиля и красоты. Мы стремимся подчеркнуть натуральную красоту каждого нашего клиента и помогаем им создавать уникальный и индивидуальный образ."/>
+                    <Image DockPanel.Dock="Top" MaxHeight="50" Source="Images/Logo.png"/>
+                </StackPanel>
+            </Viewbox>
+            <Viewbox DockPanel.Dock="Top" Stretch="Uniform">
+                <StackPanel>
+                    <TextBlock TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center" TextAlignment="Center" Margin="40 0" FontSize="14" Width="600" Text="Наша парикмахерская сочетает современные технологии и традиционные методы в уходе за волосами и кожей головы. Наши мастера имеют профессиональное образование и обладают большим опытом работы, что позволяет им выбрать наиболее эффективный способ ухода за вашими волосами."/>
+                    <Image DockPanel.Dock="Top" MaxHeight="50" Source="Images/Logo.png"/>
+                </StackPanel>
+            </Viewbox>
+            <Viewbox DockPanel.Dock="Top" Stretch="Uniform">
+                <StackPanel>
+                    <TextBlock TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center" TextAlignment="Center" Margin="40 0" FontSize="14" Width="600" Text="В нашей парикмахерской вы можете насладиться атмосферой спокойствия и комфорта. Наши интерьеры выполнены в минималистичном стиле с использованием только черных и белых цветов, что создает элегантную и стильную обстановку."/>
+                    <Image DockPanel.Dock="Top" MaxHeight="50" Source="Images/Logo.png"/>
+                </StackPanel>
+            </Viewbox>
+            <Viewbox DockPanel.Dock="Top" Stretch="Uniform">
+                <StackPanel>
+                    <TextBlock TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center" TextAlignment="Center" Margin="40 0" FontSize="14" Width="600" Text="VELIAS - это идеальное место для тех, кто хочет почувствовать себя особенным и узнать, как подчеркнуть свою индивидуальность. Мы всегда готовы помочь нашим клиентам почувствовать себя уверенно и прекрасно выглядеть!"/>
+                </StackPanel>
+            </Viewbox>
+        </DockPanel>
+    </Grid>
+</Page>

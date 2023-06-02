@@ -1,0 +1,37 @@
+﻿<Page x:Class="Barbershop.MasterPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Barbershop"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1280"
+      Title="MasterPage">
+    <Grid x:Name="masterMainSide" Background="White">
+        <!--Карточки сотрудников-->
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Hidden" Margin="20 20 0 20" HorizontalAlignment="Center">
+            <WrapPanel>
+                <ItemsControl x:Name="masterItemsControl">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border CornerRadius="6" BorderBrush="Black" Background="White" BorderThickness="2" Padding="0" Margin="0 0 20 20">
+                                <StackPanel Margin="10" >
+                                    <Image Source="{Binding Path=Photo}" Height="150"/>
+                                    <TextBlock FontSize="18" HorizontalAlignment="Center">
+                                        <Run Text="{Binding Path=LastName}"/>
+                                        <Run Text="{Binding Path=FirstName}"/>
+                                    </TextBlock>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </WrapPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

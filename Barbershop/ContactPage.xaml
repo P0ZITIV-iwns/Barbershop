@@ -1,0 +1,53 @@
+﻿<Page x:Class="Barbershop.ContactPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Barbershop"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1280"
+      Title="ContactPage">
+
+    <Grid x:Name="contactMainSide" Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" BorderBrush="Black" BorderThickness="2" Margin="20" CornerRadius="20">
+            <Border.Background>
+                <ImageBrush Stretch="Fill" ImageSource="Images/Map.png"/>
+            </Border.Background>
+        </Border>
+        <StackPanel Grid.Row="1" Margin="20" HorizontalAlignment="Center">
+            <TextBlock HorizontalAlignment="Center" FontSize="18">
+                    <Run FontWeight="Bold" Text="Адрес:"/>
+                    <Run Text=" г. Екатеринбург, ул. Заводская, д. 36"/>
+            </TextBlock>
+            <TextBlock HorizontalAlignment="Center" FontSize="18" Margin="0 5 0 0">
+                    <Run FontWeight="Bold" Text="Телефон:"/>
+                    <Run Text="Телефон: +7 (999) 777-66-66"/>
+            </TextBlock>
+            <TextBlock HorizontalAlignment="Center" FontSize="18" Margin="0 5 0 0">
+                    <Run FontWeight="Bold" Text="Электронная почта:"/>
+                    <Run Text=" info@velias.ru"/>
+            </TextBlock>
+            <TextBlock HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Text="График работы" Margin="0 5 0 0"/>
+            <TextBlock HorizontalAlignment="Center" FontSize="18">
+                    Пн: 09:00 - 20:00
+                    <LineBreak/>
+                    Вт: 09:00 - 20:00
+                    <LineBreak/>
+                    Ср: 09:00 - 20:00
+                    <LineBreak/>
+                    Чт: 09:00 - 20:00
+                    <LineBreak/>
+                    Пт: 09:00 - 20:00
+                    <LineBreak/>
+                    Сб: 09:00 - 20:00
+                    <LineBreak/>
+                    Вс: 09:00 - 20:00
+                    <LineBreak/>
+            </TextBlock>
+        </StackPanel>
+    </Grid>
+</Page>

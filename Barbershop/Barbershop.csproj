@@ -1,0 +1,97 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\add.png" />
+    <None Remove="Images\backArrow.png" />
+    <None Remove="Images\edit.png" />
+    <None Remove="Images\Employees\Ivan.jpg" />
+    <None Remove="Images\Employees\Nikita.jpg" />
+    <None Remove="Images\Employees\Nikolay.jpg" />
+    <None Remove="Images\Employees\noEmployeeImage.png" />
+    <None Remove="Images\Employees\Timur.jpg" />
+    <None Remove="Images\Employees\Yuriy.jpg" />
+    <None Remove="Images\hidePassword.png" />
+    <None Remove="Images\Logo.png" />
+    <None Remove="Images\Map.png" />
+    <None Remove="Images\Products\noProductImage.png" />
+    <None Remove="Images\Products\Воск1.png" />
+    <None Remove="Images\Products\Воск2.png" />
+    <None Remove="Images\Products\Воск3.png" />
+    <None Remove="Images\Products\Гель1.png" />
+    <None Remove="Images\Products\Гель2.png" />
+    <None Remove="Images\Products\Кондиционер1.png" />
+    <None Remove="Images\Products\Кондиционер2.png" />
+    <None Remove="Images\Products\Кондиционер3.png" />
+    <None Remove="Images\Products\Краска1.png" />
+    <None Remove="Images\Products\Краска2.png" />
+    <None Remove="Images\Products\Краска3.png" />
+    <None Remove="Images\Products\Краска4.png" />
+    <None Remove="Images\Products\Лак1.png" />
+    <None Remove="Images\Products\Лак2.png" />
+    <None Remove="Images\Products\Лак3.png" />
+    <None Remove="Images\Products\Лак4.png" />
+    <None Remove="Images\Products\Лак5.png" />
+    <None Remove="Images\Products\Шампунь1.png" />
+    <None Remove="Images\Products\Шампунь2.png" />
+    <None Remove="Images\Products\Шампунь3.png" />
+    <None Remove="Images\Products\Шампунь4.png" />
+    <None Remove="Images\remove.png" />
+    <None Remove="Images\search.png" />
+    <None Remove="Images\showPassword.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\add.png" />
+    <Resource Include="Images\edit.png" />
+    <Resource Include="Images\Employees\Ivan.jpg" />
+    <Resource Include="Images\Employees\Nikita.jpg" />
+    <Resource Include="Images\Employees\Nikolay.jpg" />
+    <Resource Include="Images\Employees\noEmployeeImage.png" />
+    <Resource Include="Images\Employees\Timur.jpg" />
+    <Resource Include="Images\Employees\Yuriy.jpg" />
+    <Resource Include="Images\hidePassword.png" />
+    <Resource Include="Images\Logo.png" />
+    <Resource Include="Images\Map.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\backArrow.png" />
+    <Resource Include="Images\Products\noProductImage.png" />
+    <Resource Include="Images\Products\Воск1.png" />
+    <Resource Include="Images\Products\Воск2.png" />
+    <Resource Include="Images\Products\Воск3.png" />
+    <Resource Include="Images\Products\Гель1.png" />
+    <Resource Include="Images\Products\Гель2.png" />
+    <Resource Include="Images\Products\Кондиционер1.png" />
+    <Resource Include="Images\Products\Кондиционер2.png" />
+    <Resource Include="Images\Products\Кондиционер3.png" />
+    <Resource Include="Images\Products\Краска1.png" />
+    <Resource Include="Images\Products\Краска2.png" />
+    <Resource Include="Images\Products\Краска3.png" />
+    <Resource Include="Images\Products\Краска4.png" />
+    <Resource Include="Images\Products\Лак1.png" />
+    <Resource Include="Images\Products\Лак2.png" />
+    <Resource Include="Images\Products\Лак3.png" />
+    <Resource Include="Images\Products\Лак4.png" />
+    <Resource Include="Images\Products\Лак5.png" />
+    <Resource Include="Images\Products\Шампунь1.png" />
+    <Resource Include="Images\Products\Шампунь2.png" />
+    <Resource Include="Images\Products\Шампунь3.png" />
+    <Resource Include="Images\Products\Шампунь4.png" />
+    <Resource Include="Images\remove.png" />
+    <Resource Include="Images\search.png" />
+    <Resource Include="Images\showPassword.png" />
+  </ItemGroup>
+
+</Project>
