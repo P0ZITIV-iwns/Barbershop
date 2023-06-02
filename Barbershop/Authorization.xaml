@@ -80,7 +80,11 @@
         <Image Grid.Row="2" x:Name="showImage" Source="Images/showPassword.png" HorizontalAlignment="Right" Margin="0 30 37 30" MouseLeftButtonDown="imagePassword_MouseLeftButtonDown" />
         <Image Grid.Row="2" x:Name="hideImage" Source="Images/hidePassword.png" HorizontalAlignment="Right" Margin="0 30 37 30" MouseLeftButtonDown="imagePassword_MouseLeftButtonDown" Visibility="Collapsed"/>
 
-        <Button Grid.Row="4" x:Name="loginButton" Content="Войти" Margin="90 20" Click="loginButton_Click" Style="{StaticResource LogInButton}"/>
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center" Margin="25 20">
+            <Button HorizontalAlignment="Left" x:Name="DefaultButtonStyle" Content="Войти" Margin="0 0 17 0" Width="100" Click="DefaultButtonStyle_Click" Style="{StaticResource DefaultButtonStyle}"/>
+            <Button HorizontalAlignment="Right" x:Name="cancelButton" Content="Отмена" Margin="17 0 0 0" Width="100" Click="cancelButton_Click" Style="{StaticResource DefaultButtonStyle}"/>
+        </StackPanel>
+       
 
     </Grid>
 </Window>

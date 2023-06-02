@@ -15,16 +15,6 @@
         </Grid.RowDefinitions>
         <Image Grid.Row="0" Source="Images/Logo.png"/>
 
-        <!--<DockPanel Grid.Row="1" LastChildFill="True" VerticalAlignment="Top" HorizontalAlignment="Center">
-            <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center" TextAlignment="Center" Margin="40 0" FontSize="14" Text="Приветствуем Вас на странице 'О нас' парикмахерской VELIAS! Наша студия представляет собой настоящее место для ценителей стиля и красоты. Мы стремимся подчеркнуть натуральную красоту каждого нашего клиента и помогаем им создавать уникальный и индивидуальный образ."/>
-            <Image DockPanel.Dock="Top" MaxHeight="50" Source="Images/Logo.png"/>
-            <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center" TextAlignment="Center" Margin="40 0" FontSize="14" Text="Наша парикмахерская сочетает современные технологии и традиционные методы в уходе за волосами и кожей головы. Наши мастера имеют профессиональное образование и обладают большим опытом работы, что позволяет им выбрать наиболее эффективный способ ухода за вашими волосами."/>
-            <Image DockPanel.Dock="Top" MaxHeight="50" Source="Images/Logo.png"/>
-            <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center" TextAlignment="Center" Margin="40 0" FontSize="14" Text="В нашей парикмахерской вы можете насладиться атмосферой спокойствия и комфорта. Наши интерьеры выполнены в минималистичном стиле с использованием только черных и белых цветов, что создает элегантную и стильную обстановку."/>
-            <Image DockPanel.Dock="Top" MaxHeight="50" Source="Images/Logo.png"/>
-            <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center" TextAlignment="Center" Margin="40 0" FontSize="14" Text="VELIAS - это идеальное место для тех, кто хочет почувствовать себя особенным и узнать, как подчеркнуть свою индивидуальность. Мы всегда готовы помочь нашим клиентам почувствовать себя уверенно и прекрасно выглядеть!"/>
-        </DockPanel>-->
-
         <DockPanel Grid.Row="1" LastChildFill="True" VerticalAlignment="Top" HorizontalAlignment="Center">
             <Viewbox DockPanel.Dock="Top" Stretch="Uniform">
                 <StackPanel>

@@ -24,8 +24,9 @@ namespace Barbershop
 
         private void Logout_Click(object sender, RoutedEventArgs e)
         {
-            Close();
-            Application.Current.MainWindow.Show();
+            var window = new MainWindow();
+            window.Show();
+            this.Close();
         }
         private void EntryDataButton_Click(object sender, RoutedEventArgs e)
         {

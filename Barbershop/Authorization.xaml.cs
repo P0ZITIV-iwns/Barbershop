@@ -22,14 +22,17 @@ namespace Barbershop
 
         }
 
-        private void loginButton_Click(object sender, RoutedEventArgs e)
+        private void DefaultButtonStyle_Click(object sender, RoutedEventArgs e)
         {
-            Hide();
-            Application.Current.MainWindow.Hide();
-
-            AdminMainWindow win = new AdminMainWindow();
-            win.Owner = this;
-            win.ShowDialog();
+            var window = new AdminMainWindow();
+            window.Show();
+            this.Close();
+        }
+        private void cancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new MainWindow();
+            window.Show();
+            this.Close();
         }
 
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)

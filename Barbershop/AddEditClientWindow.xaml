@@ -20,8 +20,6 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <!--<TextBlock Grid.Row="0" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left">Наименование</TextBlock>
-            <TextBox Grid.Row="0" x:Name="nameView" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="5" Height="30"></TextBox>-->
 
             <TextBox Grid.Row="0" x:Name="firstNameTextBox" Margin="25 10" Style="{StaticResource PlaceholderTextBoxStyle}"/>
             <TextBlock Grid.Row="0" Margin="37 0" VerticalAlignment="Center" IsHitTestVisible="False" FontSize="14" Text="Введите имя" Foreground="Black" Opacity="0.6">
@@ -66,8 +64,8 @@
             </TextBlock>
         </Grid>
 
-        <Button Grid.Row="2" x:Name="saveEditButton" Content="Сохранить" Visibility="Collapsed" Margin="90 10" Style="{StaticResource LogInButton}"/>
-        <Button Grid.Row="2" x:Name="saveAddButton" Content="Добавить" Visibility="Collapsed" Margin="90 10" Style="{StaticResource LogInButton}"/>
+        <Button Grid.Row="2" x:Name="saveEditButton" Content="Сохранить" Visibility="Collapsed" Margin="90 10" Style="{StaticResource DefaultButtonStyle}"/>
+        <Button Grid.Row="2" x:Name="saveAddButton" Content="Добавить" Visibility="Collapsed" Margin="90 10" Style="{StaticResource DefaultButtonStyle}"/>
 
     </Grid>
 </Window>

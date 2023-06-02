@@ -27,9 +27,9 @@ namespace Barbershop
 
         private void Authorization_Click(object sender, RoutedEventArgs e)
         {
-            Authorization win = new Authorization();
-            win.Owner = this;
-            win.ShowDialog();
+            var window = new Authorization();
+            window.Show();
+            this.Close();
         }
 
         private void AboutButton_Click(object sender, RoutedEventArgs e)

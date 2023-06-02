@@ -62,6 +62,6 @@
                 </DataGrid.Columns>
             </DataGrid>
         </DockPanel>
-        <Button Grid.Row="2" x:Name="addProductButton" Content="Добавить" Width="250" Margin="20" Click="addProductButton_Click" Style="{StaticResource LogInButton}"/>
+        <Button Grid.Row="2" x:Name="addProductButton" Content="Добавить" Width="250" Margin="20" Click="addProductButton_Click" Style="{StaticResource DefaultButtonStyle}"/>
     </Grid>
 </Page>
