@@ -20,6 +20,8 @@
     <None Remove="Images\hidePassword.png" />
     <None Remove="Images\Logo.png" />
     <None Remove="Images\Map.png" />
+    <None Remove="Images\Products\13. Камни.jpg" />
+    <None Remove="Images\Products\25. Ромашки.jpg" />
     <None Remove="Images\Products\noProductImage.png" />
     <None Remove="Images\Products\Воск1.png" />
     <None Remove="Images\Products\Воск2.png" />
@@ -92,6 +94,12 @@
     <Resource Include="Images\remove.png" />
     <Resource Include="Images\search.png" />
     <Resource Include="Images\showPassword.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="AddEntryWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 
 </Project>

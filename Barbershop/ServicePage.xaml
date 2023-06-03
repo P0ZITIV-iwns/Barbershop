@@ -27,11 +27,8 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <DockPanel LastChildFill="True">
-                            <TextBlock DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" Margin="10 0 0 0" Text="{Binding Path=Name}" Padding="5"/>
-                            <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="18" FontWeight="Bold" Margin="0 0 10 0" Padding="5" Foreground="Red">
-                                <Run Text="{Binding Path=Price}"/>
-                                <Run Text="руб"/>
-                            </TextBlock>
+                            <TextBlock DockPanel.Dock="Left" Text="{Binding Path=Name}" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" Margin="10 0 0 0" Padding="5"/>
+                            <TextBlock DockPanel.Dock="Right" Text="{Binding StringFormat={}{0:0.##} руб, Path=Price}" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="18" FontWeight="Bold" Margin="0 0 10 0" Padding="5" Foreground="Red"/>
                         </DockPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
@@ -42,11 +39,8 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <DockPanel LastChildFill="True">
-                            <TextBlock DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" Margin="10 0 0 0" Text="{Binding Path=Name}" Padding="5"/>
-                            <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="18" FontWeight="Bold" Margin="0 0 10 0" Padding="5" Foreground="Red">
-                                <Run Text="{Binding Path=Price}"/>
-                                <Run Text="руб"/>
-                            </TextBlock>
+                            <TextBlock DockPanel.Dock="Left" Text="{Binding Path=Name}" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" Margin="10 0 0 0" Padding="5"/>
+                            <TextBlock DockPanel.Dock="Right" Text="{Binding StringFormat={}{0:0.##} руб, Path=Price}" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="18" FontWeight="Bold" Margin="0 0 10 0" Padding="5" Foreground="Red"/>
                         </DockPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

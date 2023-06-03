@@ -41,7 +41,22 @@ namespace Barbershop
 
         private void saveEditButton_Click(object sender, RoutedEventArgs e)
         {
+            _tempClient.FirstName = firstNameTextBox.Text;
+            _tempClient.LastName = lastNameTextBox.Text;
+            _tempClient.Phone = phoneTextBox.Text;
+            DatabaseControl.UpdateClient(_tempClient);
+            Close();
+        }
 
+        private void saveAddButton_Click(object sender, RoutedEventArgs e)
+        {
+            DatabaseControl.AddClient(new Client
+            {
+                FirstName = firstNameTextBox.Text,
+                LastName = lastNameTextBox.Text,
+                Phone = phoneTextBox.Text,
+            });
+            Close();
         }
     }
 }

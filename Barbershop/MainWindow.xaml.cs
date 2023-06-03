@@ -91,5 +91,11 @@ namespace Barbershop
             this.mainUserProductFrame.Content = null;
             this.mainUserFrame.Navigate(new ContactPage());
         }
+
+        private void EntryButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddEntryWindow win = new AddEntryWindow(null);
+            win.ShowDialog();
+        }
     }
 }

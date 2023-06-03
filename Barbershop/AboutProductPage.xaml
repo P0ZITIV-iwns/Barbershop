@@ -33,13 +33,13 @@
         <Viewbox Stretch="Uniform" Margin="10" Grid.Column="2" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" MaxWidth="200">
             <StackPanel >
                 <TextBlock FontSize="26" LineHeight="32">
-                <Run Text="Категория:"/>
-                <Run Name="categoryProductPageView"/>
+                    <Run Text="Категория:"/>
+                    <Run Name="categoryProductPageView"/>
                 </TextBlock>
                 <TextBlock FontSize="26" LineHeight="32">
-                <Run Text="Цена:"/>
-                <Run Name="priceProductPageView" FontWeight="Bold"/>
-                <Run Text="рублей"/>
+                    <Run Text="Цена:"/>
+                    <Run Name="priceProductPageView" FontWeight="Bold"/>
+                    <Run Text="рублей"/>
                 </TextBlock>
             </StackPanel>
         </Viewbox>

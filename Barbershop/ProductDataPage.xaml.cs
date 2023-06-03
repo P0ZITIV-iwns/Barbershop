@@ -20,11 +20,11 @@ namespace Barbershop
         public ProductDataPage()
         {
             InitializeComponent();
-            productsDataGridView.ItemsSource = from product in DatabaseControl.GetProducts()
-                                               where product.Category != "Все"
-                                               select product;
+            //productsDataGridView.ItemsSource = from product in DatabaseControl.GetProducts()
+            //                                   where product.Category != "Все"
+            //                                   select product;
+            productsDataGridView.ItemsSource = DatabaseControl.GetProducts();
         }
-
         private void AboutProductMenuItem_Click(object sender, RoutedEventArgs e)
         {
             Product product = productsDataGridView.SelectedItem as Product;
@@ -42,30 +42,47 @@ namespace Barbershop
                                                where product.Name.ToString().ToUpper().Contains(searchTextBox.Text.ToUpper())
                                                select product;
         }
-
         private void searchImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             searchTextBox.Focus();
         }
 
-        private void EditMenuItem_Click(object sender, RoutedEventArgs e)
+        // добавление товара
+        private void addProductButton_Click(object sender, RoutedEventArgs e)
+        {
+            Product product = null;
+            AddEditProductWindow win = new AddEditProductWindow(product);
+            win.ShowDialog();
+            RefreshTable();
+        }
+        // редактирование товара
+        private void editProductButton_Click(object sender, RoutedEventArgs e)
         {
             Product product = productsDataGridView.SelectedItem as Product;
             if (product != null)
             {
                 AddEditProductWindow win = new AddEditProductWindow(product);
                 win.ShowDialog();
-            }
-            else
-            {
-                MessageBox.Show("Выберите элемент для редактирования");
+                RefreshTable();
             }
         }
-        private void addProductButton_Click(object sender, RoutedEventArgs e)
+        // удаление товара
+        private void deleteProductButton_Click(object sender, RoutedEventArgs e)
         {
-            Product product = null;
-            AddEditProductWindow win = new AddEditProductWindow(product);
-            win.ShowDialog();
+            Product product = productsDataGridView.SelectedItem as Product;
+            if (product != null)
+            {
+                DatabaseControl.RemoveProduct(product);
+                RefreshTable();
+            }
+        }
+        // обновление таблиц с данными товаров
+        public void RefreshTable()
+        {
+            productsDataGridView.ItemsSource = null;
+            productsDataGridView.ItemsSource = from product in DatabaseControl.GetProducts()
+                                               where product.Category != "Все"
+                                               select product;
         }
     }
 }

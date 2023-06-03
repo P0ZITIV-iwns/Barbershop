@@ -409,7 +409,6 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

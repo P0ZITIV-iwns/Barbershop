@@ -47,6 +47,18 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
+            <TextBlock Grid.Row="1" Margin="37 0" VerticalAlignment="Center" IsHitTestVisible="False" FontSize="14" Text="Выберите категорию" Foreground="Black" Opacity="0.6">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text, ElementName=categoryComboBox}" Value="">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
 
             <TextBox Grid.Row="2" x:Name="priceTextBox" Margin="25 10" Style="{StaticResource PlaceholderTextBoxStyle}"/>
             <TextBlock Grid.Row="2" Margin="37 0" VerticalAlignment="Center" IsHitTestVisible="False" FontSize="14" Text="Введите стоимость" Foreground="Black" Opacity="0.6">
@@ -63,7 +75,7 @@
             </TextBlock>
 
 
-            <Button Grid.Row="3" Height="35" Width="140" Content="Выбрать изображение" HorizontalAlignment="Center" Style="{StaticResource DefaultButtonStyle}"/>
+            <Button Grid.Row="3" Height="35" Width="140" Content="Выбрать изображение" HorizontalAlignment="Center" Click="addImageButton_Click" Style="{StaticResource DefaultButtonStyle}"/>
 
             <TextBox Grid.Column="1" Grid.Row="0" Grid.RowSpan="4" x:Name="descriptionTextBox" Margin="25 19" VerticalAlignment="Stretch" Style="{StaticResource PlaceholderDescriptionTextBoxStyle}"/>
             <TextBlock Grid.Column="1" Grid.Row="0" Grid.RowSpan="4" Margin="37 27" VerticalAlignment="Top" IsHitTestVisible="False" FontSize="14" Text="Введите описание" Foreground="Black" Opacity="0.6">
@@ -80,8 +92,8 @@
             </TextBlock>
         </Grid>
 
-        <Button Grid.Row="2" x:Name="saveEditButton" Content="Сохранить" Visibility="Collapsed" Width="120" Margin="90 10" Style="{StaticResource DefaultButtonStyle}"/>
-        <Button Grid.Row="2" x:Name="saveAddButton" Content="Добавить" Visibility="Collapsed" Width="120" Margin="90 10" Style="{StaticResource DefaultButtonStyle}"/>
+        <Button Grid.Row="2" x:Name="saveEditButton" Content="Сохранить" Visibility="Collapsed" Width="120" Margin="90 10" Click="saveEditButton_Click" Style="{StaticResource DefaultButtonStyle}"/>
+        <Button Grid.Row="2" x:Name="saveAddButton" Content="Добавить" Visibility="Collapsed" Width="120" Margin="90 10" Click="saveAddButton_Click" Style="{StaticResource DefaultButtonStyle}"/>
 
     </Grid>
 </Window>

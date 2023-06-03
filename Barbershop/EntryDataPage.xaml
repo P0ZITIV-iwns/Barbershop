@@ -15,35 +15,71 @@
             <RowDefinition MaxHeight="100"/>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Text="Записи" FontSize="44" FontWeight="Bold" Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <DataGrid Grid.Row="1" AutoGenerateColumns="False" Margin="20" Name="entriesDataGridView" ScrollViewer.VerticalScrollBarVisibility="Hidden" BorderThickness="2 1 2 2" BorderBrush="Black" RowHeaderWidth="0">
-            <DataGrid.ContextMenu>
-                <ContextMenu>
-                    <MenuItem Header="Редактировать"/>
-                    <MenuItem Header="Удалить"/>
-                </ContextMenu>
-            </DataGrid.ContextMenu>
-            <DataGrid.Columns>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <Button Height="25" Width="25" Background="White" BorderThickness="0" >
-                                    <Image Height="20" Source="Images/edit.png"/>
-                                </Button>
-                                <Button Height="25" Width="25" Background="White" BorderThickness="0" >
-                                    <Image Height="20" Source="Images/remove.png"/>
-                                </Button>
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Дата и время" Binding="{Binding Path=Name}" Width="*"/>
-                <DataGridTextColumn Header="Клиент" Binding="{Binding Path=Category}" Width="*"/>
-                <DataGridTextColumn Header="Услуга" Binding="{Binding Path=Duration}" Width="*"/>
-                <DataGridTextColumn Header="Сотрудник" Binding="{Binding Path=Duration}" Width="*"/>
-                <DataGridTextColumn Header="Статус" Binding="{Binding Path=Duration}" Width="*"/>
-                <DataGridTextColumn Header="Сумма" Binding="{Binding Path=Price}" Width="*"/>
-            </DataGrid.Columns>
-        </DataGrid>
+
+        <DockPanel Grid.Row="1">
+            <Grid DockPanel.Dock="Top" Margin="20 20 20 0" >
+                <TextBox x:Name="searchTextBox" Padding="35 0 10 0" Style="{StaticResource PlaceholderTextBoxStyle}"/>
+                <TextBlock Margin="37 0" VerticalAlignment="Center" IsHitTestVisible="False" FontSize="14" Text="Поиск по телефону" Foreground="Black" Opacity="0.6">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Text, ElementName=searchTextBox}" Value="">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+                <Image x:Name="searchImage" Source="Images/search.png" Height="24" HorizontalAlignment="Left" Margin="7 0" MouseLeftButtonDown="searchImage_MouseLeftButtonDown"/>
+            </Grid>
+            <DataGrid DockPanel.Dock="Top" Grid.Row="1" AutoGenerateColumns="False" Margin="20" Name="entriesDataGridView" ScrollViewer.VerticalScrollBarVisibility="Hidden" BorderThickness="2 1 2 2" BorderBrush="Black" RowHeaderWidth="0">
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Редактировать" Click="editEntryButton_Click"/>
+                        <MenuItem Header="Записать на основе данных" Click="addEntryButton_Click"/>
+                        <MenuItem Header="Отменить" Click="cancelEntryButton_Click"/>
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Height="25" Width="25" Background="White" BorderThickness="0" Click="editEntryButton_Click">
+                                        <Image Height="20" Source="Images/edit.png"/>
+                                    </Button>
+                                    <Button Height="25" Width="25" Background="White" BorderThickness="0" Click="cancelEntryButton_Click">
+                                        <Image Height="20" Source="Images/remove.png"/>
+                                    </Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Дата и время" Binding="{Binding Path=DateTime, StringFormat=\{0:dd.MM.yyyy HH:mm\}}" Width="*"/>
+                    <DataGridTextColumn Header="Клиент" Width="*">
+                        <DataGridTextColumn.Binding>
+                            <MultiBinding StringFormat="{}{0}, {1}">
+                                <Binding Path="ClientEntity.FirstName" />
+                                <Binding Path="ClientEntity.Phone" />
+                            </MultiBinding>
+                        </DataGridTextColumn.Binding>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn Header="Услуга" Binding="{Binding Path=ServiceEntity.Name}" Width="*"/>
+                    <DataGridTextColumn Header="Сотрудник" Width="*">
+                        <DataGridTextColumn.Binding>
+                            <MultiBinding StringFormat="{}{0} {1}">
+                                <Binding Path="EmployeeEntity.LastName" />
+                                <Binding Path="EmployeeEntity.FirstName" />
+                            </MultiBinding>
+                        </DataGridTextColumn.Binding>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Статус" Binding="{Binding Path=Status}" Width="*"/>
+                    <DataGridTextColumn Header="Сумма" Binding="{Binding Path=ServiceEntity.Price}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+        <Button Grid.Row="2" x:Name="addEntryButton" Content="Записать" Width="250" Margin="20" Click="addEntryButton_Click" Style="{StaticResource DefaultButtonStyle}"/>
     </Grid>
 </Page>

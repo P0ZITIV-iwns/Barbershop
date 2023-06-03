@@ -34,26 +34,40 @@ namespace Barbershop
         {
             searchTextBox.Focus();
         }
-
-        private void EditMenuItem_Click(object sender, RoutedEventArgs e)
+        // добавление клиента
+        private void addClientButton_Click(object sender, RoutedEventArgs e)
+        {
+            Client client = null;
+            AddEditClientWindow win = new AddEditClientWindow(client);
+            win.ShowDialog();
+            RefreshTable();
+        }
+        // редактирование клиента
+        private void editClientButton_Click(object sender, RoutedEventArgs e)
         {
             Client client = clientsDataGridView.SelectedItem as Client;
             if (client != null)
             {
                 AddEditClientWindow win = new AddEditClientWindow(client);
                 win.ShowDialog();
-            }
-            else
-            {
-                MessageBox.Show("Выберите элемент для редактирования");
+                RefreshTable();
             }
         }
-
-        private void addClientButton_Click(object sender, RoutedEventArgs e)
+        // удаление клиента
+        private void deleteClientButton_Click(object sender, RoutedEventArgs e)
         {
-            Client client = null;
-            AddEditClientWindow win = new AddEditClientWindow(client);
-            win.ShowDialog();
+            Client client = clientsDataGridView.SelectedItem as Client;
+            if (client != null)
+            {
+                DatabaseControl.RemoveClient(client);
+                RefreshTable();
+            }
+        }
+        // обновление таблиц с данными клиентов
+        public void RefreshTable()
+        {
+            clientsDataGridView.ItemsSource = null;
+            clientsDataGridView.ItemsSource = DatabaseControl.GetClients();
         }
     }
 }

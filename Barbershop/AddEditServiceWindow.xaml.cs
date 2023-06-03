@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,6 +42,28 @@ namespace Barbershop
                 durationTextBox.Text = service.Duration.ToString();
                 priceTextBox.Text = service.Price.ToString();
             }
+        }
+
+        private void saveEditButton_Click(object sender, RoutedEventArgs e)
+        {
+            _tempService.Name = nameTextBox.Text;
+            _tempService.Category = (string)categoryComboBox.SelectedValue;
+            _tempService.Duration = Convert.ToInt32(durationTextBox.Text);
+            _tempService.Price = Convert.ToDecimal(priceTextBox.Text);
+            DatabaseControl.UpdateService(_tempService);
+            Close();
+        }
+
+        private void saveAddButton_Click(object sender, RoutedEventArgs e)
+        {
+            DatabaseControl.AddService(new Service
+            {
+                Name = nameTextBox.Text,
+                Category = (string)categoryComboBox.SelectedValue,
+                Duration = Convert.ToInt32(durationTextBox.Text),
+                Price = Convert.ToDecimal(priceTextBox.Text)
+            });
+            Close();
         }
     }
 }

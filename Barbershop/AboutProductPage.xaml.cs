@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ namespace Barbershop
 
             nameProductPageView.Text = _product.Name;
             categoryProductPageView.Text = _product.Category;
-            priceProductPageView.Text = _product.Price.ToString();
+            priceProductPageView.Text = (String.Format("{0:0.##}", _product.Price));
             descriptionProductPageView.Text = _product.Description;
             //BitmapImage _bitmapImage = new BitmapImage();
             //using (Stream stream = File.OpenRead(_product.Image))
@@ -33,15 +34,15 @@ namespace Barbershop
             //    _bitmapImage.StreamSource = stream;
             //    _bitmapImage.EndInit();
             //}
-            imageProductPageView.Source = new BitmapImage(new Uri(_product.Image, UriKind.Relative)); ;
+            BitmapImage bitmap = new BitmapImage(new Uri(_product.Image, UriKind.Relative));
+            imageProductPageView.Source = bitmap;
+
+            //imageProductPageView.Source = new BitmapImage(new Uri(_product.Image, UriKind.Relative));
         }
         private void BackArrowButton_Click(object sender, RoutedEventArgs e)
         {
-
-            //this.NavigationService.Navigate(new ProductDataPage());
             if (NavigationService.CanGoBack) NavigationService.GoBack();
             else Content = null;
-
         }
     }
 }

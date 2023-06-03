@@ -29,14 +29,14 @@
                             <Style>
                                 <Style.Triggers>
                                     <Trigger Property="Border.IsMouseOver" Value="True">
-                                        <Setter Property="Border.Background" Value="WhiteSmoke"/>
+                                        <Setter Property="Border.Background" Value="Gainsboro"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
                         </Border.Style>
 
                         <StackPanel Margin="10" Orientation="Vertical">
-                            <Image Source="{Binding Path=Image}" Height="150"/>
+                            <Image Source="{Binding Path=Image}" Height="150" MaxWidth="100"/>
                             <TextBlock Text="{Binding Path=Name}" FontSize="18" HorizontalAlignment="Center" Width="150" TextWrapping="Wrap"/>
                         </StackPanel>
 

@@ -37,8 +37,8 @@
             <DataGrid AutoGenerateColumns="False" Margin="20" Name="servicesDataGridView" ScrollViewer.VerticalScrollBarVisibility="Hidden" BorderThickness="2 1 2 2" BorderBrush="Black" RowHeaderWidth="0">
                 <DataGrid.ContextMenu>
                     <ContextMenu>
-                        <MenuItem Header="Редактировать" Click="EditMenuItem_Click"/>
-                        <MenuItem Header="Удалить" />
+                        <MenuItem Header="Редактировать" Click="editServiceButton_Click"/>
+                        <MenuItem Header="Удалить" Click="deleteServiceButton_Click"/>
                     </ContextMenu>
                 </DataGrid.ContextMenu>
                 <DataGrid.Columns>
@@ -46,10 +46,10 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Height="25" Width="25" Background="White" BorderThickness="0" Click="EditMenuItem_Click">
+                                    <Button Height="25" Width="25" Background="White" BorderThickness="0" Click="editServiceButton_Click">
                                         <Image Height="20" Source="Images/edit.png"/>
                                     </Button>
-                                    <Button Height="25" Width="25" Background="White" BorderThickness="0" >
+                                    <Button Height="25" Width="25" Background="White" BorderThickness="0" Click="deleteServiceButton_Click">
                                         <Image Height="20" Source="Images/remove.png"/>
                                     </Button>
                                 </StackPanel>

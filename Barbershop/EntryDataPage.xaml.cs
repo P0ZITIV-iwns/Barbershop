@@ -15,14 +15,56 @@ using System.Windows.Shapes;
 
 namespace Barbershop
 {
-    /// <summary>
-    /// Логика взаимодействия для EntryDataPage.xaml
-    /// </summary>
     public partial class EntryDataPage : Page
     {
         public EntryDataPage()
         {
             InitializeComponent();
+            entriesDataGridView.ItemsSource = from _entry in DatabaseControl.GetEntries()
+                                              where !string.IsNullOrWhiteSpace(_entry.DateTime)
+                                              select _entry;
         }
+        private void searchImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            searchTextBox.Focus();
+        }
+
+        // добавление записи
+        private void addEntryButton_Click(object sender, RoutedEventArgs e)
+        {
+            Entry entry = entriesDataGridView.SelectedItem as Entry;
+            AddEntryWindow win = new AddEntryWindow(entry);
+            win.ShowDialog();
+        }
+        // редактирование записи
+        private void editEntryButton_Click(object sender, RoutedEventArgs e)
+        {
+            Entry entry = entriesDataGridView.SelectedItem as Entry;
+            if (entry != null)
+            {
+                EditEntryWindow win = new EditEntryWindow(entry);
+                win.ShowDialog();
+                RefreshTable();
+            }
+        }
+        // отмена записи
+        private void cancelEntryButton_Click(object sender, RoutedEventArgs e)
+        {
+            Entry entry = entriesDataGridView.SelectedItem as Entry;
+            if (entry != null)
+            {
+                entry.Status = "Отменена";
+                DatabaseControl.UpdateEntry(entry);
+                RefreshTable();
+            }
+        }
+        // обновление таблиц с данными записи
+        public void RefreshTable()
+        {
+            entriesDataGridView.ItemsSource = null;
+            entriesDataGridView.ItemsSource = from _entry in DatabaseControl.GetEntries()
+                                              where !string.IsNullOrWhiteSpace(_entry.DateTime)
+                                              select _entry;
+        }  
     }
 }

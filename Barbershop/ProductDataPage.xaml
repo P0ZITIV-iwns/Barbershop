@@ -37,8 +37,8 @@
                 <DataGrid.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header="Подробнее" Click="AboutProductMenuItem_Click"/>
-                        <MenuItem Header="Редактировать" Click="EditMenuItem_Click"/>
-                        <MenuItem Header="Удалить" />
+                        <MenuItem Header="Редактировать" Click="editProductButton_Click"/>
+                        <MenuItem Header="Удалить" Click="deleteProductButton_Click"/>
                     </ContextMenu>
                 </DataGrid.ContextMenu>
                 <DataGrid.Columns>
@@ -46,10 +46,10 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Height="25" Width="25" Background="White" BorderThickness="0" Click="EditMenuItem_Click">
+                                    <Button Height="25" Width="25" Background="White" BorderThickness="0" Click="editProductButton_Click">
                                         <Image Height="20" Source="Images/edit.png"/>
                                     </Button>
-                                    <Button Height="25" Width="25" Background="White" BorderThickness="0" >
+                                    <Button Height="25" Width="25" Background="White" BorderThickness="0" Click="deleteProductButton_Click">
                                         <Image Height="20" Source="Images/remove.png"/>
                                     </Button>
                                 </StackPanel>
@@ -58,7 +58,7 @@
                     </DataGridTemplateColumn>
                     <DataGridTextColumn Header="Наименование" Binding="{Binding Path=Name}" Width="Auto"/>
                     <DataGridTextColumn Header="Категория" Binding="{Binding Path=Category}" Width="*"/>
-                    <DataGridTextColumn Header="Стоимость, в рублях" Binding="{Binding Path=Price}" Width="*"/>
+                    <DataGridTextColumn Header="Стоимость" Binding="{Binding Path=Price}" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
         </DockPanel>

@@ -38,7 +38,7 @@
 
         <!--Панель (правая) для записи-->
         <Viewbox Grid.Column="2" VerticalAlignment="Bottom" Stretch="Uniform">
-            <Button Name="EntryButton" Content="Запись" Style="{StaticResource EntryStyle}"/>
+            <Button Name="EntryButton" Content="Запись" Click="EntryButton_Click" Style="{StaticResource EntryStyle}"/>
         </Viewbox>
 
         <Frame Grid.Column="1" Grid.ColumnSpan="2" Name="mainUserProductFrame" NavigationUIVisibility="Hidden"/>
