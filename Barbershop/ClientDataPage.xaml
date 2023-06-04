@@ -33,7 +33,7 @@
                 <Image x:Name="searchImage" Source="Images/search.png" Height="24" HorizontalAlignment="Left" Margin="7 0" MouseLeftButtonDown="searchImage_MouseLeftButtonDown"/>
             </Grid>
 
-            <DataGrid AutoGenerateColumns="False" Margin="20" Name="clientsDataGridView" ScrollViewer.VerticalScrollBarVisibility="Hidden" BorderThickness="2 1 2 2" BorderBrush="Black" RowHeaderWidth="0">
+            <DataGrid DockPanel.Dock="Top" Grid.Row="1" Name="clientsDataGridView" AutoGenerateColumns="False" ScrollViewer.VerticalScrollBarVisibility="Hidden" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}">
                 <DataGrid.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header="Редактировать" Click="editClientButton_Click"/>
@@ -41,23 +41,23 @@
                     </ContextMenu>
                 </DataGrid.ContextMenu>
                 <DataGrid.Columns>
-                    <DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Имя" Binding="{Binding Path=FirstName}" Width="*" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Фамилия" Binding="{Binding Path=LastName}" Width="*" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Телефон" Binding="{Binding Path=Phone}" Width="*" IsReadOnly="True"/>
+                    <DataGridTemplateColumn Header="Операция" IsReadOnly="True" Width="0.6*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Height="25" Width="25" Background="White" BorderThickness="0" Click="editClientButton_Click">
-                                        <Image Height="20" Source="Images/edit.png"/>
+                                    <Button Style="{StaticResource gridEditButton}" Click="editClientButton_Click">
+                                        <Image Source="Images/edit.png" Style="{StaticResource gridButtonImage}"/>
                                     </Button>
-                                    <Button Height="25" Width="25" Background="White" BorderThickness="0" Click="deleteClientButton_Click">
-                                        <Image Height="20" Source="Images/remove.png"/>
+                                    <Button Style="{StaticResource gridRemoveButton}" Click="deleteClientButton_Click">
+                                        <Image Source="Images/remove.png" Style="{StaticResource gridButtonImage}"/>
                                     </Button>
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Имя" Binding="{Binding Path=FirstName}" Width="*"/>
-                    <DataGridTextColumn Header="Фамилия" Binding="{Binding Path=LastName}" Width="*"/>
-                    <DataGridTextColumn Header="Телефон" Binding="{Binding Path=Phone}" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
         </DockPanel>

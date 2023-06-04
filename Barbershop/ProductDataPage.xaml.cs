@@ -20,10 +20,9 @@ namespace Barbershop
         public ProductDataPage()
         {
             InitializeComponent();
-            //productsDataGridView.ItemsSource = from product in DatabaseControl.GetProducts()
-            //                                   where product.Category != "Все"
-            //                                   select product;
-            productsDataGridView.ItemsSource = DatabaseControl.GetProducts();
+            productsDataGridView.ItemsSource = from product in DatabaseControl.GetProducts()
+                                               where product.Category != "Все"
+                                               select product;
         }
         private void AboutProductMenuItem_Click(object sender, RoutedEventArgs e)
         {

@@ -33,7 +33,7 @@
                 </TextBlock>
                 <Image x:Name="searchImage" Source="Images/search.png" Height="24" HorizontalAlignment="Left" Margin="7 0" MouseLeftButtonDown="searchImage_MouseLeftButtonDown"/>
             </Grid>
-            <DataGrid DockPanel.Dock="Top" Grid.Row="1" AutoGenerateColumns="False" Margin="20" Name="entriesDataGridView" ScrollViewer.VerticalScrollBarVisibility="Hidden" BorderThickness="2 1 2 2" BorderBrush="Black" RowHeaderWidth="0">
+            <DataGrid DockPanel.Dock="Top" Grid.Row="1" Name="entriesDataGridView" AutoGenerateColumns="False" ScrollViewer.VerticalScrollBarVisibility="Hidden" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}">
                 <DataGrid.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header="Редактировать" Click="editEntryButton_Click"/>
@@ -42,22 +42,8 @@
                     </ContextMenu>
                 </DataGrid.ContextMenu>
                 <DataGrid.Columns>
-                    <DataGridTemplateColumn>
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Button Height="25" Width="25" Background="White" BorderThickness="0" Click="editEntryButton_Click">
-                                        <Image Height="20" Source="Images/edit.png"/>
-                                    </Button>
-                                    <Button Height="25" Width="25" Background="White" BorderThickness="0" Click="cancelEntryButton_Click">
-                                        <Image Height="20" Source="Images/remove.png"/>
-                                    </Button>
-                                </StackPanel>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Дата и время" Binding="{Binding Path=DateTime, StringFormat=\{0:dd.MM.yyyy HH:mm\}}" Width="*"/>
-                    <DataGridTextColumn Header="Клиент" Width="*">
+                    <DataGridTextColumn Header="Дата и время" Binding="{Binding Path=DateTime, StringFormat=\{0:dd.MM.yyyy HH:mm\}}" Width="*" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Клиент" Width="*" IsReadOnly="True">
                         <DataGridTextColumn.Binding>
                             <MultiBinding StringFormat="{}{0}, {1}">
                                 <Binding Path="ClientEntity.FirstName" />
@@ -65,9 +51,8 @@
                             </MultiBinding>
                         </DataGridTextColumn.Binding>
                     </DataGridTextColumn>
-
-                    <DataGridTextColumn Header="Услуга" Binding="{Binding Path=ServiceEntity.Name}" Width="*"/>
-                    <DataGridTextColumn Header="Сотрудник" Width="*">
+                    <DataGridTextColumn Header="Услуга" Binding="{Binding Path=ServiceEntity.Name}" Width="*" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Сотрудник" Width="*" IsReadOnly="True">
                         <DataGridTextColumn.Binding>
                             <MultiBinding StringFormat="{}{0} {1}">
                                 <Binding Path="EmployeeEntity.LastName" />
@@ -75,8 +60,22 @@
                             </MultiBinding>
                         </DataGridTextColumn.Binding>
                     </DataGridTextColumn>
-                    <DataGridTextColumn Header="Статус" Binding="{Binding Path=Status}" Width="*"/>
-                    <DataGridTextColumn Header="Сумма" Binding="{Binding Path=ServiceEntity.Price}" Width="*"/>
+                    <DataGridTextColumn Header="Статус" Binding="{Binding Path=Status}" CanUserResize="False" Width="*" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Сумма" Binding="{Binding Path=ServiceEntity.Price}" CanUserResize="False" Width="*" IsReadOnly="True"/>
+                    <DataGridTemplateColumn Header="Операция" IsReadOnly="True" Width="0.6*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Style="{StaticResource gridEditButton}" Click="editEntryButton_Click">
+                                        <Image Source="Images/edit.png" Style="{StaticResource gridButtonImage}"/>
+                                    </Button>
+                                    <Button Style="{StaticResource gridRemoveButton}" Click="cancelEntryButton_Click">
+                                        <Image Source="Images/remove.png" Style="{StaticResource gridButtonImage}"/>
+                                    </Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </DockPanel>
