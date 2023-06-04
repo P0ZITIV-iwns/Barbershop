@@ -107,7 +107,7 @@
                 </TextBlock.Style>
             </TextBlock>
 
-            <ComboBox Grid.Row="5" x:Name="employeeNameComboBox" FontSize="14" Margin="25 10" Height="35" SelectedValuePath="LatName" Style="{StaticResource AddEditComboBoxStyle}">
+            <ComboBox Grid.Row="5" x:Name="employeeNameComboBox" FontSize="14" Margin="25 10" Height="35" SelectedValuePath="LastName" Style="{StaticResource AddEditComboBoxStyle}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock>

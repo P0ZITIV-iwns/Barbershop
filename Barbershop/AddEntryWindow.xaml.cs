@@ -55,7 +55,6 @@ namespace Barbershop
                                                   where _service.Category == "Мужская"
                                                   group _service
                                                   by _service.Name;
-
             }
             else
             {
@@ -64,7 +63,6 @@ namespace Barbershop
                                                   group _service
                                                   by _service.Name;
             }
-
         }
 
         private void serviceCategoryComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

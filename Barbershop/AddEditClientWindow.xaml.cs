@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace Barbershop
 {
@@ -65,28 +67,38 @@ namespace Barbershop
             
         }
 
+
         // проверка валидности
         private bool Check()
         {
-            if (string.IsNullOrWhiteSpace(firstNameTextBox.Text) && string.IsNullOrWhiteSpace(phoneTextBox.Text)){
-                MessageBox.Show("Поля для ввода имени и телефона обязательны!", "Ошибка");
-                return false;   
-            }else if (string.IsNullOrWhiteSpace(firstNameTextBox.Text))
+
+            using (DbAppContext ctx = new DbAppContext())
             {
-                MessageBox.Show("Поле для ввода имени обязательно!", "Ошибка");
-                return false;
-            }else if (string.IsNullOrWhiteSpace(phoneTextBox.Text))
-            {
-                MessageBox.Show("Поле для ввода телефона обязательно!", "Ошибка");
-                return false;
-            }else if ((from client in DatabaseControl.GetClients() where client.Phone.ToString() == phoneTextBox.Text select client.Phone) != null)
-            {
-                MessageBox.Show("Клиент с введёным телефоном уже имеется в базе данных!", "Ошибка");
-                return false;
-            }
-            else
-            {
-                return true;
+                var currentClients = ctx.Client.FirstOrDefault(c => c.Phone == phoneTextBox.Text);
+                if (string.IsNullOrWhiteSpace(firstNameTextBox.Text) && string.IsNullOrWhiteSpace(phoneTextBox.Text))
+                {
+                    MessageBox.Show("Поля для ввода имени и телефона обязательны!", "Ошибка");
+                    return false;
+                }
+                else if (string.IsNullOrWhiteSpace(firstNameTextBox.Text))
+                {
+                    MessageBox.Show("Поле для ввода имени обязательно!", "Ошибка");
+                    return false;
+                }
+                else if (string.IsNullOrWhiteSpace(phoneTextBox.Text))
+                {
+                    MessageBox.Show("Поле для ввода телефона обязательно!", "Ошибка");
+                    return false;
+                }
+                else if (currentClients != null)
+                {
+                    MessageBox.Show("Клиент с введёным телефоном уже имеется в базе данных!", "Ошибка");
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
         }
     }

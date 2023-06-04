@@ -25,10 +25,14 @@ namespace Barbershop
         {
             InitializeComponent();
             _tempProduct = product;
-            categoryComboBox.ItemsSource = from _product in DatabaseControl.GetProducts()
-                                           where _product.Category != "Все"
-                                           group _product
-                                           by _product.Category;
+            //categoryComboBox.ItemsSource = from _product in DatabaseControl.GetProducts()
+            //                               where _product.Category != "Все"
+            //                               group _product
+            //                               by _product.Category;
+            using (DbAppContext ctx = new DbAppContext())
+            {
+                categoryComboBox.ItemsSource = ctx.Product.Where(item => item.Category != "Все").GroupBy(item => item.Category).Select(g => new { Category = g.Key }).ToList();
+            }
 
             if (product == null)
             {
