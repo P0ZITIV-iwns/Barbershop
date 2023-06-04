@@ -52,7 +52,7 @@ namespace Barbershop
             if (textBlock.Text == "Мужская")
             {
                 serviceNameComboBox.ItemsSource = from _service in DatabaseControl.GetServices()
-                                                  where _service.Category == textBlock.Text
+                                                  where _service.Category == "Мужская"
                                                   group _service
                                                   by _service.Name;
 
@@ -60,7 +60,7 @@ namespace Barbershop
             else
             {
                 serviceNameComboBox.ItemsSource = from _service in DatabaseControl.GetServices()
-                                                  where _service.Category != textBlock.Text
+                                                  where _service.Category == "Женская"
                                                   group _service
                                                   by _service.Name;
             }
@@ -80,7 +80,7 @@ namespace Barbershop
             if (textBlock.Text == "Мужская")
             {
                 serviceNameComboBox.ItemsSource = from _service in DatabaseControl.GetServices()
-                                                  where _service.Category == textBlock.Text
+                                                  where _service.Category == "Мужская"
                                                   group _service
                                                   by _service.Name;
 
@@ -88,7 +88,7 @@ namespace Barbershop
             else
             {
                 serviceNameComboBox.ItemsSource = from _service in DatabaseControl.GetServices()
-                                                  where _service.Category != textBlock.Text
+                                                  where _service.Category == "Женская"
                                                   group _service
                                                   by _service.Name;
             }

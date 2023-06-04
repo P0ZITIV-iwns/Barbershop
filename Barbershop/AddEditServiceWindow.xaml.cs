@@ -23,9 +23,13 @@ namespace Barbershop
         {
             InitializeComponent();
             _tempService = service;
-            categoryComboBox.ItemsSource = from _service in DatabaseControl.GetServices()
-                                           group _service
-                                           by _service.Category;
+            //categoryComboBox.ItemsSource = from _service in DatabaseControl.GetServices()
+            //                               group _service
+            //                               by _service.Category;
+            using (DbAppContext ctx = new DbAppContext())
+            {
+                categoryComboBox.ItemsSource = ctx.Service.GroupBy(item => item.Category).Select(g => new { Category = g.Key }).ToList();
+            }
             if (service == null)
             {
                 headerWindow.Text = "Добавление";
