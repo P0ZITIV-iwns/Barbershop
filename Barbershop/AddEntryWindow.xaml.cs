@@ -41,6 +41,7 @@ namespace Barbershop
                                                group _emloyee
                                                by _emloyee.Phone;
 
+
             ComboBox comboBox = serviceCategoryComboBox;
             ComboBoxItem comboBoxItem = comboBox.ItemContainerGenerator.ContainerFromItem(comboBox.SelectedItem) as ComboBoxItem;
             if (comboBoxItem == null)
@@ -113,22 +114,43 @@ namespace Barbershop
         private void saveAddButton_Click(object sender, RoutedEventArgs e)
         {
             var cultureInfo = new CultureInfo("ru-RU");
-
-            if ((from client in DatabaseControl.GetClients() where client.Phone.ToString() == phoneTextBox.Text select client.Phone) == null)
+            using (DbAppContext ctx = new DbAppContext())
             {
-                DatabaseControl.AddClient(new Client
+                var currentClient = ctx.Client.FirstOrDefault(u => u.Phone == phoneTextBox.Text);
+                if (currentClient == null)
                 {
-                    FirstName = firstNameTextBox.Text,
-                    LastName = lastNameTextBox.Text,
-                    Phone = phoneTextBox.Text
+                    DatabaseControl.AddClient(new Client
+                    {
+                        FirstName = firstNameTextBox.Text,
+                        LastName = lastNameTextBox.Text,
+                        Phone = phoneTextBox.Text
+                    });
+                }
+
+
+
+                //if ((from client in DatabaseControl.GetClients() where client.Phone.ToString() == phoneTextBox.Text select client.Phone) == null)
+                //{
+                //    DatabaseControl.AddClient(new Client
+                //    {
+                //        FirstName = firstNameTextBox.Text,
+                //        LastName = lastNameTextBox.Text,
+                //        Phone = phoneTextBox.Text
+                //    });
+                //}
+                currentClient = ctx.Client.FirstOrDefault(u => u.Phone == phoneTextBox.Text);
+                var currentEmployee = ctx.Employee.FirstOrDefault(u => u.LastName == employeeNameComboBox.SelectedValue);
+                var currentService = ctx.Service.FirstOrDefault(u => u.Name == serviceNameComboBox.SelectedValue);
+
+                DatabaseControl.AddEntry(new Entry
+                {
+                    ID_client = currentClient.Id,
+                    ID_employee = currentEmployee.Id,
+                    ID_service = currentService.Id,
+                    DateTime = dateTimeTextBox.Text,
+                    Status = "Согласование"
                 });
             }
-            
-
-            //DatabaseControl.AddEntry(new Entry
-            //{
-            //    DateTime = Convert.ToDateTime(dateTimeTextBox.Text).ToString("dd/MM/yyyy hh:G")
-            //});
             Close();
         }
     }

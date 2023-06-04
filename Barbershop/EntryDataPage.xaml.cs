@@ -35,6 +35,7 @@ namespace Barbershop
             Entry entry = entriesDataGridView.SelectedItem as Entry;
             AddEntryWindow win = new AddEntryWindow(entry);
             win.ShowDialog();
+            RefreshTable();
         }
         // редактирование записи
         private void editEntryButton_Click(object sender, RoutedEventArgs e)

@@ -25,7 +25,7 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <TextBox Grid.Row="0" x:Name="firstNameTextBox" Margin="25 10" Style="{StaticResource PlaceholderTextBoxStyle}"/>
+            <TextBox Grid.Row="0" x:Name="firstNameTextBox" Margin="25 10" MaxLength="20" Style="{StaticResource PlaceholderTextBoxStyle}"/>
             <TextBlock Grid.Row="0" Margin="37 0" VerticalAlignment="Center" IsHitTestVisible="False" FontSize="14" Text="Введите имя" Foreground="Black" Opacity="0.6">
                 <TextBlock.Style>
                     <Style TargetType="{x:Type TextBlock}">
@@ -39,7 +39,7 @@
                 </TextBlock.Style>
             </TextBlock>
 
-            <TextBox Grid.Row="1" x:Name="lastNameTextBox" Margin="25 10" Style="{StaticResource PlaceholderTextBoxStyle}"/>
+            <TextBox Grid.Row="1" x:Name="lastNameTextBox" Margin="25 10" MaxLength="20" Style="{StaticResource PlaceholderTextBoxStyle}"/>
             <TextBlock Grid.Row="1" Margin="37 0" VerticalAlignment="Center" IsHitTestVisible="False" FontSize="14" Text="Введите фамилию" Foreground="Black" Opacity="0.6">
                 <TextBlock.Style>
                     <Style TargetType="{x:Type TextBlock}">
@@ -53,7 +53,7 @@
                 </TextBlock.Style>
             </TextBlock>
 
-            <TextBox Grid.Row="2" x:Name="phoneTextBox" Margin="25 10" Style="{StaticResource PlaceholderTextBoxStyle}"/>
+            <TextBox Grid.Row="2" x:Name="phoneTextBox" Margin="25 10" MaxLength="10" Style="{StaticResource PlaceholderTextBoxStyle}"/>
             <TextBlock Grid.Row="2" Margin="37 0" VerticalAlignment="Center" IsHitTestVisible="False" FontSize="14" Text="Введите телефон" Foreground="Black" Opacity="0.6">
                 <TextBlock.Style>
                     <Style TargetType="{x:Type TextBlock}">
@@ -130,7 +130,7 @@
                 </TextBlock.Style>
             </TextBlock>
 
-            <TextBox Grid.Row="6" x:Name="dateTimeTextBox" Margin="25 10" Style="{StaticResource PlaceholderTextBoxStyle}"/>
+            <TextBox Grid.Row="6" x:Name="dateTimeTextBox" Margin="25 10" MaxLength="20" Style="{StaticResource PlaceholderTextBoxStyle}"/>
             <TextBlock Grid.Row="6" Margin="37 0" VerticalAlignment="Center" IsHitTestVisible="False" FontSize="14" Text="Введите дату и время" Foreground="Black" Opacity="0.6">
                 <TextBlock.Style>
                     <Style TargetType="{x:Type TextBlock}">

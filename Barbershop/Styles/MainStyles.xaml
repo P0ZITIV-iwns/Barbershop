@@ -344,9 +344,6 @@
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="FontWeight" Value="Bold"/>
             </Trigger>
-            <Trigger Property="IsSelected" Value="True">
-                <Setter Property="FontWeight" Value="Bold"/>
-            </Trigger>
         </Style.Triggers>
     </Style>
     <!--Стили для фильтра мужского/женского зала-->
