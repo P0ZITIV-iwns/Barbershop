@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Barbershop
 {
-    internal class DbAppContext : DbContext
+    public class DbAppContext : DbContext
     {
         public DbSet<Service> Service { get; set; }
         public DbSet<Employee> Employee { get; set; }

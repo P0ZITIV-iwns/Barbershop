@@ -26,7 +26,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <TextBox Grid.Row="0" x:Name="nameTextBox" Margin="25 10" Style="{StaticResource PlaceholderTextBoxStyle}"/>
+            <TextBox Grid.Row="0" x:Name="nameTextBox" Margin="25 10" MaxLength="100" Style="{StaticResource PlaceholderTextBoxStyle}"/>
             <TextBlock Grid.Row="0" Margin="37 0" VerticalAlignment="Center" IsHitTestVisible="False" FontSize="14" Text="Введите наименование" Foreground="Black" Opacity="0.6">
                 <TextBlock.Style>
                     <Style TargetType="{x:Type TextBlock}">
@@ -60,7 +60,7 @@
                 </TextBlock.Style>
             </TextBlock>
 
-            <TextBox Grid.Row="2" x:Name="priceTextBox" Margin="25 10" Style="{StaticResource PlaceholderTextBoxStyle}"/>
+            <TextBox Grid.Row="2" x:Name="priceTextBox" Margin="25 10" MaxLength="10" Style="{StaticResource PlaceholderTextBoxStyle}"/>
             <TextBlock Grid.Row="2" Margin="37 0" VerticalAlignment="Center" IsHitTestVisible="False" FontSize="14" Text="Введите стоимость" Foreground="Black" Opacity="0.6">
                 <TextBlock.Style>
                     <Style TargetType="{x:Type TextBlock}">

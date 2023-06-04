@@ -116,17 +116,21 @@ namespace Barbershop
         {
             var cultureInfo = new CultureInfo("ru-RU");
 
-            DatabaseControl.AddClient(new Client
+            if ((from client in DatabaseControl.GetClients() where client.Phone.ToString() == phoneTextBox.Text select client.Phone) == null)
             {
-                FirstName = firstNameTextBox.Text,
-                LastName = lastNameTextBox.Text,
-                Phone = phoneTextBox.Text,
-            });
+                DatabaseControl.AddClient(new Client
+                {
+                    FirstName = firstNameTextBox.Text,
+                    LastName = lastNameTextBox.Text,
+                    Phone = phoneTextBox.Text
+                });
+            }
+            
 
-            DatabaseControl.AddEntry(new Entry
-            {
-                DateTime = Convert.ToDateTime(dateTimeTextBox.Text).ToString("dd/MM/yyyy hh:G")
-            });
+            //DatabaseControl.AddEntry(new Entry
+            //{
+            //    DateTime = Convert.ToDateTime(dateTimeTextBox.Text).ToString("dd/MM/yyyy hh:G")
+            //});
             Close();
         }
     }

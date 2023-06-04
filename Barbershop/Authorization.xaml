@@ -46,7 +46,7 @@
 
         <Image Source="Images/Logo.png"/>
 
-        <TextBox Grid.Row="1" x:Name="loginTextBox" Margin="25 10" Style="{StaticResource PlaceholderTextBoxStyle}"/>
+        <TextBox Grid.Row="1" x:Name="loginTextBox" Margin="25 10" MaxLength="20" Style="{StaticResource PlaceholderTextBoxStyle}"/>
         <TextBlock Grid.Row="1" Margin="37 0" VerticalAlignment="Center" IsHitTestVisible="False" FontSize="14" Text="Введите логин" Foreground="Black" Opacity="0.6">
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
@@ -60,7 +60,7 @@
             </TextBlock.Style>
         </TextBlock>
 
-        <TextBox Grid.Row="2" x:Name="passwordTextBox" Margin="25 10" Style="{StaticResource PlaceholderTextBoxPasswordStyle}" Visibility="Collapsed" TextChanged="passwordTextBox_TextChanged"/>
+        <TextBox Grid.Row="2" x:Name="passwordTextBox" Margin="25 10" MaxLength="40" Style="{StaticResource PlaceholderTextBoxPasswordStyle}" Visibility="Collapsed" TextChanged="passwordTextBox_TextChanged"/>
         <TextBlock Grid.Row="2" Margin="37 0" VerticalAlignment="Center" IsHitTestVisible="False" FontSize="14" Text="Введите пароль" Foreground="Black" Opacity="0.6" Visibility="Collapsed">
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
@@ -74,14 +74,14 @@
             </TextBlock.Style>
         </TextBlock>
 
-        <PasswordBox Grid.Row="2" x:Name="passwordPasswordBox" Margin="25 10" Style="{StaticResource PlaceholderPasswordBoxStyle}"/>
+        <PasswordBox Grid.Row="2" x:Name="passwordPasswordBox" Margin="25 10" MaxLength="40" Style="{StaticResource PlaceholderPasswordBoxStyle}"/>
         <TextBlock Grid.Row="2" x:Name="placeholder" Margin="37 0" VerticalAlignment="Center" IsHitTestVisible="False" FontSize="14" Text="Введите пароль" Foreground="Black" Opacity="0.6"/>
 
         <Image Grid.Row="2" x:Name="showImage" Source="Images/showPassword.png" HorizontalAlignment="Right" Margin="0 30 37 30" MouseLeftButtonDown="imagePassword_MouseLeftButtonDown" />
         <Image Grid.Row="2" x:Name="hideImage" Source="Images/hidePassword.png" HorizontalAlignment="Right" Margin="0 30 37 30" MouseLeftButtonDown="imagePassword_MouseLeftButtonDown" Visibility="Collapsed"/>
 
         <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center" Margin="25 20">
-            <Button HorizontalAlignment="Left" x:Name="DefaultButtonStyle" Content="Войти" Margin="0 0 17 0" Width="100" Click="DefaultButtonStyle_Click" Style="{StaticResource DefaultButtonStyle}"/>
+            <Button HorizontalAlignment="Left" x:Name="loginButton" Content="Войти" Margin="0 0 17 0" Width="100" Click="loginButton_Click" Style="{StaticResource DefaultButtonStyle}"/>
             <Button HorizontalAlignment="Right" x:Name="cancelButton" Content="Отмена" Margin="17 0 0 0" Width="100" Click="cancelButton_Click" Style="{StaticResource DefaultButtonStyle}"/>
         </StackPanel>
        

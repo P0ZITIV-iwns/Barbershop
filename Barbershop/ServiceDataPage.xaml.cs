@@ -25,10 +25,12 @@ namespace Barbershop
 
         private void searchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-
-            servicesDataGridView.ItemsSource = from service in DatabaseControl.GetServices()
-                                               where service.Name.ToString().ToUpper().Contains(searchTextBox.Text.ToUpper())
-                                               select service;
+            using (DbAppContext ctx = new DbAppContext())
+            {
+                servicesDataGridView.ItemsSource = ctx.Service.Where(item => item.Name.ToLower().Contains(searchTextBox.Text.ToLower()) ||
+                                                                           item.Category.ToLower().Contains(searchTextBox.Text.ToLower()) ||
+                                                                           item.Duration.ToString().Contains(searchTextBox.Text.ToLower())).ToList();
+            }
         }
 
         private void searchImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

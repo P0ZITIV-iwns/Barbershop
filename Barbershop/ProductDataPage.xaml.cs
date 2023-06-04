@@ -20,9 +20,10 @@ namespace Barbershop
         public ProductDataPage()
         {
             InitializeComponent();
-            productsDataGridView.ItemsSource = from product in DatabaseControl.GetProducts()
-                                               where product.Category != "Все"
-                                               select product;
+            using (DbAppContext ctx = new DbAppContext())
+            {
+                productsDataGridView.ItemsSource = ctx.Product.Where(item => item.Category != "Все").ToList();
+            }
         }
         private void AboutProductMenuItem_Click(object sender, RoutedEventArgs e)
         {
@@ -36,10 +37,11 @@ namespace Barbershop
         }
         private void searchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-
-            productsDataGridView.ItemsSource = from product in DatabaseControl.GetProducts()
-                                               where product.Name.ToString().ToUpper().Contains(searchTextBox.Text.ToUpper())
-                                               select product;
+            using (DbAppContext ctx = new DbAppContext())
+            {
+                productsDataGridView.ItemsSource = ctx.Product.Where(item => item.Name.ToLower().Contains(searchTextBox.Text.ToLower()) ||
+                                                                           item.Category.ToLower().Contains(searchTextBox.Text.ToLower())).ToList();
+            }
         }
         private void searchImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {

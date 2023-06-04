@@ -24,10 +24,15 @@ namespace Barbershop
         }
         private void searchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-
-            employeesDataGridView.ItemsSource = from employee in DatabaseControl.GetEmployees()
-                                                where employee.LastName.ToString().ToUpper().Contains(searchTextBox.Text.ToUpper())
-                                                select employee;
+            using (DbAppContext ctx = new DbAppContext())
+            {
+                employeesDataGridView.ItemsSource = ctx.Employee.Where(item => item.FirstName.ToLower().Contains(searchTextBox.Text.ToLower()) ||
+                                                                           item.LastName.ToLower().Contains(searchTextBox.Text.ToLower()) ||
+                                                                           item.Patronymic.ToLower().Contains(searchTextBox.Text.ToLower()) ||
+                                                                           item.Post.ToLower().Contains(searchTextBox.Text.ToLower()) ||
+                                                                           item.Login.ToLower().Contains(searchTextBox.Text.ToLower()) ||
+                                                                           item.Phone.Contains(searchTextBox.Text)).ToList();
+            }
         }
 
         private void searchImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

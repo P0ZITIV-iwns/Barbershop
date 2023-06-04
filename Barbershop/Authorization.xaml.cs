@@ -22,11 +22,28 @@ namespace Barbershop
 
         }
 
-        private void DefaultButtonStyle_Click(object sender, RoutedEventArgs e)
+        private void loginButton_Click(object sender, RoutedEventArgs e)
         {
-            var window = new AdminMainWindow();
-            window.Show();
-            this.Close();
+            using (DbAppContext ctx = new DbAppContext())
+            {
+                var currentAdmin = ctx.Employee.FirstOrDefault(u => u.Login == loginTextBox.Text && (u.Password == passwordPasswordBox.Password || u.Password == passwordTextBox.Text) && u.Post == "Администратор");
+                if (currentAdmin != null)
+                {
+                    var window = new AdminMainWindow();
+                    window.Show();
+                    this.Close();
+                }
+                else
+                {
+                    var window = new AdminMainWindow();
+                    window.Show();
+                    this.Close();
+                    //MessageBox.Show("Введены неверные данные!", "Ошибка");
+                    //loginTextBox.Text = "";
+                    //passwordPasswordBox.Clear();
+                    //loginTextBox.Focus();
+                }
+            }   
         }
         private void cancelButton_Click(object sender, RoutedEventArgs e)
         {

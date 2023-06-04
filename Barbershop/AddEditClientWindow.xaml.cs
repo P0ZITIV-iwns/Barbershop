@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Barbershop;
+using Microsoft.EntityFrameworkCore.Metadata;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -50,13 +52,42 @@ namespace Barbershop
 
         private void saveAddButton_Click(object sender, RoutedEventArgs e)
         {
-            DatabaseControl.AddClient(new Client
+            if (Check())
             {
-                FirstName = firstNameTextBox.Text,
-                LastName = lastNameTextBox.Text,
-                Phone = phoneTextBox.Text,
-            });
-            Close();
+                DatabaseControl.AddClient(new Client
+                {
+                    FirstName = firstNameTextBox.Text,
+                    LastName = lastNameTextBox.Text,
+                    Phone = phoneTextBox.Text,
+                });
+                Close();
+            }
+            
+        }
+
+        // проверка валидности
+        private bool Check()
+        {
+            if (string.IsNullOrWhiteSpace(firstNameTextBox.Text) && string.IsNullOrWhiteSpace(phoneTextBox.Text)){
+                MessageBox.Show("Поля для ввода имени и телефона обязательны!", "Ошибка");
+                return false;   
+            }else if (string.IsNullOrWhiteSpace(firstNameTextBox.Text))
+            {
+                MessageBox.Show("Поле для ввода имени обязательно!", "Ошибка");
+                return false;
+            }else if (string.IsNullOrWhiteSpace(phoneTextBox.Text))
+            {
+                MessageBox.Show("Поле для ввода телефона обязательно!", "Ошибка");
+                return false;
+            }else if ((from client in DatabaseControl.GetClients() where client.Phone.ToString() == phoneTextBox.Text select client.Phone) != null)
+            {
+                MessageBox.Show("Клиент с введёным телефоном уже имеется в базе данных!", "Ошибка");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

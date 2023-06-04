@@ -18,7 +18,7 @@
         <DockPanel Grid.Row="1">
             <Grid DockPanel.Dock="Top" Margin="20 20 20 0" >
                 <TextBox x:Name="searchTextBox" Padding="35 0 10 0" TextChanged="searchTextBox_TextChanged" Style="{StaticResource PlaceholderTextBoxStyle}"/>
-                <TextBlock Margin="37 0" VerticalAlignment="Center" IsHitTestVisible="False" FontSize="14" Text="Поиск по наименованию" Foreground="Black" Opacity="0.6">
+                <TextBlock Margin="37 0" VerticalAlignment="Center" IsHitTestVisible="False" FontSize="14" Text="Поиск" Foreground="Black" Opacity="0.6">
                     <TextBlock.Style>
                         <Style TargetType="{x:Type TextBlock}">
                             <Setter Property="Visibility" Value="Collapsed"/>
