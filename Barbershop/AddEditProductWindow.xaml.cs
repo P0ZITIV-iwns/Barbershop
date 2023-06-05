@@ -19,7 +19,8 @@ namespace Barbershop
     public partial class AddEditProductWindow : Window
     {
         private Product _tempProduct;
-        private const string _Image = "Images\\Products";
+        string _imageSource = Environment.CurrentDirectory + "\\..\\..\\..\\" + "Images\\Products";
+        string _imageSourceToDatabase = "Images\\Products";
         private OpenFileDialog _img;
         public AddEditProductWindow(Product product)
         {
@@ -74,15 +75,19 @@ namespace Barbershop
         private void saveAddButton_Click(object sender, RoutedEventArgs e)
         {
             string filePath;
+            string filePathBase;
             if (_img == null)
             {
-                filePath = "Images/Products/noProductImage.png";
+                filePathBase = "Images/Products/noProductImage.png";
             }
             else
             {
-                //filePath = System.IO.Path.Combine(_Image, _img.SafeFileName);
-                //File.Copy(_img.FileName, filePath, true);
-                filePath = "Images/Products/noProductImage.png";
+                filePath = System.IO.Path.Combine(_imageSource, _img.SafeFileName);
+                File.Copy(_img.FileName, filePath, true);
+                MessageBox.Show(_imageSource);
+                MessageBox.Show(filePath);
+                //filePath = "Images/Products/noProductImage.png";
+                filePathBase = System.IO.Path.Combine(_imageSourceToDatabase, _img.SafeFileName);
             }
             DatabaseControl.AddProduct(new Product
             {
@@ -90,7 +95,7 @@ namespace Barbershop
                 Category = (string)categoryComboBox.SelectedValue,
                 Description = descriptionTextBox.Text,
                 Price = Convert.ToDecimal(priceTextBox.Text),
-                Image = filePath
+                Image = filePathBase
             });
             Close();
         }

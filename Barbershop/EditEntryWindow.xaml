@@ -71,7 +71,7 @@
             <ComboBox Grid.Row="3" x:Name="serviceCategoryComboBox" FontSize="14" Margin="25 10" Height="35" SelectedValuePath="Category" Style="{StaticResource AddEditComboBoxStyle}" IsEnabled="False">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock x:Name="categoryTextBlock" Text="{Binding Path=Category}"/>
+                        <TextBlock x:Name="categoryTextBlock" TextTrimming="CharacterEllipsis" Text="{Binding Path=Category}"/>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
@@ -91,7 +91,7 @@
             <ComboBox Grid.Row="4" x:Name="serviceNameComboBox" FontSize="14" Margin="25 10" Height="35" SelectedValuePath="Name" Style="{StaticResource AddEditComboBoxStyle}" IsEnabled="False">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock x:Name="serviceTextBlock" Text="{Binding Path=Name}" Width="190"/>
+                        <TextBlock x:Name="serviceTextBlock" TextTrimming="CharacterEllipsis" Text="{Binding Path=Name}"/>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
@@ -148,7 +148,7 @@
             <ComboBox Grid.Row="7" x:Name="statusComboBox" FontSize="14" Margin="25 10" Height="35" SelectedValuePath="Status" Style="{StaticResource AddEditComboBoxStyle}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock x:Name="statusTextBlock" Text="{Binding Path=Status}"/>
+                        <TextBlock x:Name="statusTextBlock" TextTrimming="CharacterEllipsis" Text="{Binding Path=Status}"/>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>

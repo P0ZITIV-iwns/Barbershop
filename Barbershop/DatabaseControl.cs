@@ -201,11 +201,11 @@ namespace Barbershop
                 ctx.SaveChanges();
             }
         }
-        public static void CancelEntry(Entry entry)
+        public static void RemoveEntry(Entry entry)
         {
             using (DbAppContext ctx = new DbAppContext())
             {
-                
+                ctx.Entry.Remove(entry);
                 ctx.SaveChanges();
             }
         }

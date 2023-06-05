@@ -20,6 +20,7 @@
     <None Remove="Images\hidePassword.png" />
     <None Remove="Images\Logo.png" />
     <None Remove="Images\Map.png" />
+    <None Remove="Images\Products\10. Цветы.jpg" />
     <None Remove="Images\Products\13. Камни.jpg" />
     <None Remove="Images\Products\25. Ромашки.jpg" />
     <None Remove="Images\Products\noProductImage.png" />
@@ -69,6 +70,7 @@
 
   <ItemGroup>
     <Resource Include="Images\backArrow.png" />
+    <Resource Include="Images\Products\10. Цветы.jpg" />
     <Resource Include="Images\Products\noProductImage.png" />
     <Resource Include="Images\Products\Воск1.png" />
     <Resource Include="Images\Products\Воск2.png" />

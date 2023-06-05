@@ -39,7 +39,7 @@
             <ComboBox Grid.Row="1" x:Name="categoryComboBox" FontSize="14" Margin="25 10" Height="35" SelectedValuePath="Category" Style="{StaticResource AddEditComboBoxStyle}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Path=Category}"/>
+                        <TextBlock TextTrimming="CharacterEllipsis" Text="{Binding Path=Category}"/>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>

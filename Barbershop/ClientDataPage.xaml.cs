@@ -61,6 +61,13 @@ namespace Barbershop
             Client client = clientsDataGridView.SelectedItem as Client;
             if (client != null)
             {
+                using (DbAppContext ctx = new DbAppContext())
+                {
+                    var entry = ctx.Entry.Where(item => item.ID_client == client.Id).ToList();
+                    foreach (var item in entry)
+                        DatabaseControl.RemoveEntry(item);
+                    ctx.SaveChanges();
+                }
                 DatabaseControl.RemoveClient(client);
                 RefreshTable();
             }
