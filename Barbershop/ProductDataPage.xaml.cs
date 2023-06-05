@@ -22,7 +22,7 @@ namespace Barbershop
             InitializeComponent();
             using (DbAppContext ctx = new DbAppContext())
             {
-                productsDataGridView.ItemsSource = ctx.Product.Where(item => item.Category != "Все").ToList();
+                productsDataGridView.ItemsSource = ctx.Product.Where(item => item.Category != "Все").OrderBy(item => item.Category).OrderBy(item => item.Name).ToList();  
             }
         }
         private void AboutProductMenuItem_Click(object sender, RoutedEventArgs e)
@@ -80,10 +80,11 @@ namespace Barbershop
         // обновление таблиц с данными товаров
         public void RefreshTable()
         {
-            productsDataGridView.ItemsSource = null;
-            productsDataGridView.ItemsSource = from product in DatabaseControl.GetProducts()
-                                               where product.Category != "Все"
-                                               select product;
+            using (DbAppContext ctx = new DbAppContext())
+            {
+                productsDataGridView.ItemsSource = ctx.Product.Where(item => item.Category != "Все").OrderBy(item => item.Category).OrderBy(item => item.Name).ToList();
+
+            }
         }
     }
 }

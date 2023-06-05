@@ -41,6 +41,7 @@ namespace Barbershop
                     //MessageBox.Show("Введены неверные данные!", "Ошибка");
                     //loginTextBox.Text = "";
                     //passwordPasswordBox.Clear();
+                    //passwordTextBox.Text = "";
                     //loginTextBox.Focus();
                 }
             }   

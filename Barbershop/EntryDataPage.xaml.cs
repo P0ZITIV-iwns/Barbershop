@@ -24,6 +24,21 @@ namespace Barbershop
                                               where !string.IsNullOrWhiteSpace(_entry.DateTime)
                                               select _entry;
         }
+        private void searchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            entriesDataGridView.ItemsSource = from _entry in DatabaseControl.GetEntries()
+                                              where !string.IsNullOrWhiteSpace(_entry.DateTime) &&
+                                              (
+                                                  _entry.ClientEntity.FirstName.ToLower().Contains(searchTextBox.Text.ToLower()) ||
+                                                  _entry.ClientEntity.Phone.Contains(searchTextBox.Text) ||
+                                                  _entry.EmployeeEntity.LastName.ToLower().Contains(searchTextBox.Text.ToLower()) ||
+                                                  _entry.EmployeeEntity.FirstName.ToLower().Contains(searchTextBox.Text.ToLower()) ||
+                                                  _entry.ServiceEntity.Name.ToLower().Contains(searchTextBox.Text.ToLower()) ||
+                                                  _entry.Status.ToLower().Contains(searchTextBox.Text.ToLower()) ||
+                                                  _entry.DateTime.ToLower().Contains(searchTextBox.Text.ToLower())
+                                              )
+                                              select _entry;
+        }
         private void searchImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             searchTextBox.Focus();
@@ -66,6 +81,8 @@ namespace Barbershop
             entriesDataGridView.ItemsSource = from _entry in DatabaseControl.GetEntries()
                                               where !string.IsNullOrWhiteSpace(_entry.DateTime)
                                               select _entry;
-        }  
+        }
+
+        
     }
 }
