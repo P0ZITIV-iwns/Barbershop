@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -61,7 +62,7 @@ namespace Barbershop
         {
             using (DbAppContext ctx = new DbAppContext())
             {
-                return ctx.Finance.Include(p => p.EntryEntity).Include(p => p.ProductEntity).ToList();
+                return ctx.Finance.Include(p => p.EntryEntity).ToList();
             }
         }
         // УСЛУГИ (ДОБАЛВЕНИЕ, РЕДАКТИРОВАНИЕ, УДАЛЕНИЕ)
@@ -136,6 +137,10 @@ namespace Barbershop
                 ctx.Product.Remove(product);
                 ctx.SaveChanges();
             }
+            if (product.Image != "Images/Products/noProductImage.png")
+            {
+                File.Delete(product.FullPathToImage);
+            }
         }
 
         // КЛИЕНТЫ (ДОБАВЛЕНИЕ, РЕДАКТИРОВАНИЕ, УДАЛЕНИЕ)
@@ -207,6 +212,16 @@ namespace Barbershop
             using (DbAppContext ctx = new DbAppContext())
             {
                 ctx.Entry.Remove(entry);
+                ctx.SaveChanges();
+            }
+        }
+
+        // ФИНАНСЫ(ДОБАЛВЕНИЕ, ПРЕДСТАВЛЕНИЕ)
+        public static void AddFinance(Finance finance)
+        {
+            using (DbAppContext ctx = new DbAppContext())
+            {
+                ctx.Finance.Add(finance);
                 ctx.SaveChanges();
             }
         }

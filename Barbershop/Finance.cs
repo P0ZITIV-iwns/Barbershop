@@ -11,13 +11,12 @@ namespace Barbershop
     public class Finance
     {
         [Key] public int Id { get; set; }
-        public string Type { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime DateTime { get; set; }
         public int Amount { get; set; }
         [ForeignKey("EntryEntity")] public int ID_entry { get; set; }
-        [ForeignKey("ProductEntity")] public int ID_product { get; set; }
+        //[ForeignKey("ProductEntity")] public int ID_product { get; set; }
         public Entry EntryEntity { get; set; }
-        public Product ProductEntity { get; set; }
+        //public Product ProductEntity { get; set; }
 
     }
 }

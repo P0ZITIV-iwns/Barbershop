@@ -15,7 +15,7 @@ namespace Barbershop
         public string Category { get; set; }
         public decimal Price { get; set; }
         public string Image { get; set; }
-        public List<Finance> FinanceEntities { get; set; }
+        //public List<Finance> FinanceEntities { get; set; }
 
         public string FullPathToImage => Environment.CurrentDirectory + "\\..\\..\\..\\" + Image;
     }

@@ -23,6 +23,27 @@ namespace Barbershop
         public FinanceDataPage()
         {
             InitializeComponent();
+            //financeDataGridView.ItemsSource = DatabaseControl.GetFinances();
+            var query = from finance in DatabaseControl.GetFinances()
+                        join entry in DatabaseControl.GetEntries() on finance.ID_entry equals entry.Id
+                        join service in DatabaseControl.GetServices() on entry.ID_service equals service.Id
+                        join employee in DatabaseControl.GetEmployees() on entry.ID_employee equals employee.Id
+                        select new
+                        {
+                            ServiceName = service.Name,
+                            EmployeeLastName = employee.LastName,
+                            EmployeeFirstName = employee.FirstName,
+                            finance.Id,
+                            finance.DateTime,
+                            finance.Amount
+                        };
+            financeDataGridView.ItemsSource = query.ToList();
+        }
+
+        private void infoButton_Click(object sender, RoutedEventArgs e)
+        {
+            InfoWindow win = new InfoWindow();
+            win.ShowDialog();
         }
     }
 }

@@ -113,7 +113,6 @@ namespace Barbershop
 
         private void saveAddButton_Click(object sender, RoutedEventArgs e)
         {
-            var cultureInfo = new CultureInfo("ru-RU");
             using (DbAppContext ctx = new DbAppContext())
             {
                 var currentClient = ctx.Client.FirstOrDefault(u => u.Phone == phoneTextBox.Text);
@@ -127,17 +126,6 @@ namespace Barbershop
                     });
                 }
 
-
-
-                //if ((from client in DatabaseControl.GetClients() where client.Phone.ToString() == phoneTextBox.Text select client.Phone) == null)
-                //{
-                //    DatabaseControl.AddClient(new Client
-                //    {
-                //        FirstName = firstNameTextBox.Text,
-                //        LastName = lastNameTextBox.Text,
-                //        Phone = phoneTextBox.Text
-                //    });
-                //}
                 currentClient = ctx.Client.FirstOrDefault(u => u.Phone == phoneTextBox.Text);
                 var currentEmployee = ctx.Employee.FirstOrDefault(u => u.LastName == employeeNameComboBox.SelectedValue);
                 var currentService = ctx.Service.FirstOrDefault(u => u.Name == serviceNameComboBox.SelectedValue);
@@ -147,9 +135,9 @@ namespace Barbershop
                     ID_client = currentClient.Id,
                     ID_employee = currentEmployee.Id,
                     ID_service = currentService.Id,
-                    DateTime = DateTime.ParseExact(dateTimeTextBox.Text, "yyyy-MM-ddTHH:mm:ss", CultureInfo.InvariantCulture),
+                    DateTime = DateTime.SpecifyKind(Convert.ToDateTime(dateTimeTextBox.Text), DateTimeKind.Utc),
                     Status = "Согласование"
-            });
+                });
             }
             Close();
         }

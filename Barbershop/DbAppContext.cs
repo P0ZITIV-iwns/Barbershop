@@ -19,7 +19,8 @@ namespace Barbershop
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseNpgsql(
-                "Host=localhost;Username=postgres;Password=22345621;Database=BarbershopDatabase");
+                "Host=localhost;Username=postgres;Password=root;Database=BarbershopDatabase");
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -27,7 +28,7 @@ namespace Barbershop
             modelBuilder.Entity<Entry>().HasOne(p => p.EmployeeEntity).WithMany(p => p.EntryEntities);
             modelBuilder.Entity<Entry>().HasOne(p => p.ServiceEntity).WithMany(p => p.EntryEntities);
             modelBuilder.Entity<Finance>().HasOne(p => p.EntryEntity).WithMany(p => p.FinanceEntities);
-            modelBuilder.Entity<Finance>().HasOne(p => p.ProductEntity).WithMany(p => p.FinanceEntities);
+            //modelBuilder.Entity<Finance>().HasOne(p => p.ProductEntity).WithMany(p => p.FinanceEntities);
         }
     }
 }

@@ -10,6 +10,7 @@
   <ItemGroup>
     <None Remove="Images\add.png" />
     <None Remove="Images\backArrow.png" />
+    <None Remove="Images\changeStatus.png" />
     <None Remove="Images\edit.png" />
     <None Remove="Images\Employees\Ivan.jpg" />
     <None Remove="Images\Employees\Nikita.jpg" />
@@ -56,6 +57,7 @@
 
   <ItemGroup>
     <Resource Include="Images\add.png" />
+    <Resource Include="Images\changeStatus.png" />
     <Resource Include="Images\edit.png" />
     <Resource Include="Images\Employees\Ivan.jpg" />
     <Resource Include="Images\Employees\Nikita.jpg" />

@@ -62,14 +62,17 @@
                     </DataGridTextColumn>
                     <DataGridTextColumn Header="Статус" Binding="{Binding Path=Status}" CanUserResize="False" Width="*" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Сумма" Binding="{Binding Path=ServiceEntity.Price}" CanUserResize="False" Width="*" IsReadOnly="True"/>
-                    <DataGridTemplateColumn Header="Операция" IsReadOnly="True" Width="0.6*">
+                    <DataGridTemplateColumn Header="Операция" IsReadOnly="True" Width="0.7*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Style="{StaticResource gridEditButton}" Click="editEntryButton_Click">
+                                    <Button Style="{StaticResource gridEditButton}" Click="editEntryButton_Click" Margin="-10 0 0 0">
                                         <Image Source="Images/edit.png" Style="{StaticResource gridButtonImage}"/>
                                     </Button>
-                                    <Button Style="{StaticResource gridRemoveButton}" Click="cancelEntryButton_Click">
+                                    <Button Style="{StaticResource gridChangeStatusButton}" Click="changeStatusEntryButton_Click" Margin="5 0 0 0">
+                                        <Image Source="Images/changeStatus.png" Style="{StaticResource gridButtonImage}"/>
+                                    </Button>
+                                    <Button Style="{StaticResource gridRemoveButton}" Click="cancelEntryButton_Click" Margin="5 0 0 0">
                                         <Image Source="Images/remove.png" Style="{StaticResource gridButtonImage}"/>
                                     </Button>
                                 </StackPanel>

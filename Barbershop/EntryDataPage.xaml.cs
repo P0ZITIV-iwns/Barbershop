@@ -20,9 +20,15 @@ namespace Barbershop
         public EntryDataPage()
         {
             InitializeComponent();
+
             entriesDataGridView.ItemsSource = from _entry in DatabaseControl.GetEntries()
                                               where _entry.DateTime != DateTime.MinValue
                                               select _entry;
+            //using (DbAppContext ctx = new DbAppContext())
+            //{
+            //    entriesDataGridView.ItemsSource = ctx.Entry.Where(item => item.DateTime != DateTime.MinValue).ToList();
+
+            //}
         }
         private void searchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -63,11 +69,41 @@ namespace Barbershop
                 RefreshTable();
             }
         }
+        // изменение статуса
+        private void changeStatusEntryButton_Click(object sender, RoutedEventArgs e)
+        {
+            Entry entry = entriesDataGridView.SelectedItem as Entry;
+            if (entry != null)
+            {
+                if (entry.Status == "Согласование")
+                    entry.Status = "Назначена";
+                else if (entry.Status == "Назначена")
+                    entry.Status = "В процессе";
+                else if (entry.Status == "В процессе")
+                {
+                    entry.Status = "Завершена";
+                    using (DbAppContext ctx = new DbAppContext())
+                    {
+                        DateTime currentTime = entry.DateTime;
+                        DateTime newDateTime = currentTime.AddMinutes(entry.ServiceEntity.Duration);
+                        DatabaseControl.AddFinance(new Finance
+                        {
+                            ID_entry = entry.Id,
+                            DateTime = DateTime.SpecifyKind(Convert.ToDateTime(newDateTime), DateTimeKind.Utc),
+                            Amount = (int)entry.ServiceEntity.Price
+                        });
+                    }
+                }
+                    
+                DatabaseControl.UpdateEntry(entry);
+                RefreshTable();
+            }
+        }
         // отмена записи
         private void cancelEntryButton_Click(object sender, RoutedEventArgs e)
         {
             Entry entry = entriesDataGridView.SelectedItem as Entry;
-            if (entry != null)
+            if (entry != null && entry.Status != "Завершена")
             {
                 entry.Status = "Отменена";
                 DatabaseControl.UpdateEntry(entry);
@@ -81,6 +117,11 @@ namespace Barbershop
             entriesDataGridView.ItemsSource = from _entry in DatabaseControl.GetEntries()
                                               where _entry.DateTime != DateTime.MinValue
                                               select _entry;
+            //using (DbAppContext ctx = new DbAppContext())
+            //{
+            //    entriesDataGridView.ItemsSource = ctx.Entry.Where(item => item.DateTime != DateTime.MinValue).ToList();
+
+            //}
         }
 
         

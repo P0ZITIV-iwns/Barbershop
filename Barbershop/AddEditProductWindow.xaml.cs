@@ -22,6 +22,7 @@ namespace Barbershop
         string _imageSource = Environment.CurrentDirectory + "\\..\\..\\..\\" + "Images\\Products";
         string _imageSourceToDatabase = "Images/Products/";
         private OpenFileDialog _img;
+        string filePath;
         public AddEditProductWindow(Product product)
         {
             InitializeComponent();
@@ -68,13 +69,27 @@ namespace Barbershop
             _tempProduct.Category = (string)categoryComboBox.SelectedValue;
             _tempProduct.Description = descriptionTextBox.Text;
             _tempProduct.Price = Convert.ToDecimal(priceTextBox.Text);
+            if (_tempProduct.Image != "Images/Products/noProductImage.png")
+            {
+                File.Delete(_tempProduct.FullPathToImage);
+            }
+            if (_img == null)
+            {
+                _tempProduct.Image = "Images/Products/noProductImage.png";
+            }
+            else
+            {
+                filePath = System.IO.Path.Combine(_imageSource, _img.SafeFileName);
+                File.Copy(_img.FileName, filePath, true);
+                _tempProduct.Image = System.IO.Path.Combine(_imageSourceToDatabase, _img.SafeFileName);
+            }
+
             DatabaseControl.UpdateProduct(_tempProduct);
             Close();
         }
 
         private void saveAddButton_Click(object sender, RoutedEventArgs e)
         {
-            string filePath;
             string filePathBase;
             if (_img == null)
             {
@@ -84,7 +99,6 @@ namespace Barbershop
             {
                 filePath = System.IO.Path.Combine(_imageSource, _img.SafeFileName);
                 File.Copy(_img.FileName, filePath, true);
-                //filePath = "Images/Products/noProductImage.png";
                 filePathBase = System.IO.Path.Combine(_imageSourceToDatabase, _img.SafeFileName);
             }
             DatabaseControl.AddProduct(new Product

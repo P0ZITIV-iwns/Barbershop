@@ -1,0 +1,77 @@
+﻿<Window x:Class="Barbershop.InfoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Barbershop"
+        mc:Ignorable="d"
+        Title="Информация" Height="450" Width="350"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+    <Grid>
+        <StackPanel Margin="20">
+            <StackPanel>
+                <TextBlock Text="Сводная информация" FontSize="18" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+                <ComboBox x:Name="infoTimeComboBox" SelectedIndex="0" SelectionChanged="infoTimeComboBox_SelectionChanged" FontSize="16" HorizontalContentAlignment="Center" Style="{StaticResource productComboBoxStyle}" Height="35" Margin="0 20">
+                    <ComboBoxItem Content="За всё время"/>
+                    <ComboBoxItem Content="За последние 7 дней"/>
+                    <ComboBoxItem Content="За последние 30 дней"/>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel>
+                <Border CornerRadius="6" BorderBrush="Black" Background="White" BorderThickness="2" Padding="0">
+                    <StackPanel>
+                        <TextBlock Margin="5" FontSize="13">
+                            <Run Text="Назначено записей:"/>
+                            <Run x:Name="countAssignedEntries"/>
+                        </TextBlock>
+                        <TextBlock Margin="5 0" FontSize="13">
+                            <Run Text="В процессе записей:"/>
+                            <Run x:Name="countInProcessEntries"/>
+                        </TextBlock>
+                        <TextBlock Margin="5" FontSize="13">
+                            <Run Text="Проведено записей:"/>
+                            <Run x:Name="countCompletedEntries"/>
+                        </TextBlock>
+                        <TextBlock Margin="5 0" FontSize="13">
+                            <Run Text="Отменено записей:"/>
+                            <Run x:Name="countCancelEntries"/>
+                        </TextBlock>
+                        <TextBlock Margin="5" FontSize="13">
+                            <Run Text="Всего записей:"/>
+                            <Run x:Name="countAllEntries"/>
+                        </TextBlock>
+                    </StackPanel>
+                </Border>
+
+                <Border CornerRadius="6" BorderBrush="Black" Background="White" BorderThickness="2" Padding="0" Margin="0 20">
+                    <StackPanel>
+                        <TextBlock Margin="5" FontSize="13">
+                                <Run Text="Продано женских услуг:"/>
+                                <Run x:Name="countSellWomenServices"/>
+                        </TextBlock>
+                        <TextBlock Margin="5 0" FontSize="13">
+                                <Run Text="Выручено за женские услуги:"/>
+                                <Run x:Name="sumSellWomenServices"/>
+                                <Run Text="руб"/>
+                        </TextBlock>
+                        <TextBlock Margin="5 5 5 0" FontSize="13">
+                                <Run Text="Продано мужских услуг:"/>
+                                <Run x:Name="countSellManServices"/>
+                        </TextBlock>
+                        <TextBlock Margin="5 5 5 0" FontSize="13">
+                                <Run Text="Выручено за мужские услуги:"/>
+                                <Run x:Name="sumSellManServices"/>
+                                <Run Text="руб"/>
+                        </TextBlock>
+                        <TextBlock Margin="5" FontSize="13">
+                                <Run Text="Выручено всего:"/>
+                                <Run x:Name="sumAllSellServices"/>
+                                <Run Text="руб"/>
+                        </TextBlock>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
