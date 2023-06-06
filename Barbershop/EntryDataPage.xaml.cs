@@ -21,13 +21,13 @@ namespace Barbershop
         {
             InitializeComponent();
             entriesDataGridView.ItemsSource = from _entry in DatabaseControl.GetEntries()
-                                              where !string.IsNullOrWhiteSpace(_entry.DateTime)
+                                              where _entry.DateTime != DateTime.MinValue
                                               select _entry;
         }
         private void searchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             entriesDataGridView.ItemsSource = from _entry in DatabaseControl.GetEntries()
-                                              where !string.IsNullOrWhiteSpace(_entry.DateTime) &&
+                                              where !string.IsNullOrWhiteSpace(_entry.DateTime.ToString()) &&
                                               (
                                                   _entry.ClientEntity.FirstName.ToLower().Contains(searchTextBox.Text.ToLower()) ||
                                                   _entry.ClientEntity.Phone.Contains(searchTextBox.Text) ||
@@ -35,7 +35,7 @@ namespace Barbershop
                                                   _entry.EmployeeEntity.FirstName.ToLower().Contains(searchTextBox.Text.ToLower()) ||
                                                   _entry.ServiceEntity.Name.ToLower().Contains(searchTextBox.Text.ToLower()) ||
                                                   _entry.Status.ToLower().Contains(searchTextBox.Text.ToLower()) ||
-                                                  _entry.DateTime.ToLower().Contains(searchTextBox.Text.ToLower())
+                                                  _entry.DateTime.ToString().Contains(searchTextBox.Text)
                                               )
                                               select _entry;
         }
@@ -79,7 +79,7 @@ namespace Barbershop
         {
             entriesDataGridView.ItemsSource = null;
             entriesDataGridView.ItemsSource = from _entry in DatabaseControl.GetEntries()
-                                              where !string.IsNullOrWhiteSpace(_entry.DateTime)
+                                              where _entry.DateTime != DateTime.MinValue
                                               select _entry;
         }
 

@@ -21,6 +21,10 @@ namespace Barbershop
         {
             InitializeComponent();
             employeesDataGridView.ItemsSource = DatabaseControl.GetEmployees();
+            using (DbAppContext ctx = new DbAppContext())
+            {
+                employeesDataGridView.ItemsSource = ctx.Employee.Where(item => item.Post != "Администратор").ToList();
+            }
         }
         private void searchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {

@@ -19,7 +19,7 @@ namespace Barbershop
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseNpgsql(
-                "Host=localhost;Username=postgres;Password=root;Database=BarbershopDatabase");
+                "Host=localhost;Username=postgres;Password=22345621;Database=BarbershopDatabase");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

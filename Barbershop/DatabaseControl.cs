@@ -124,6 +124,7 @@ namespace Barbershop
                 _product.Description = product.Description;
                 _product.Price = product.Price;
                 _product.Id = product.Id;
+                _product.Image = product.Image;
 
                 ctx.SaveChanges();
             }

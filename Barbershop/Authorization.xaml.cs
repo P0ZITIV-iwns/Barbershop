@@ -35,14 +35,14 @@ namespace Barbershop
                 }
                 else
                 {
-                    var window = new AdminMainWindow();
-                    window.Show();
-                    this.Close();
-                    //MessageBox.Show("Введены неверные данные!", "Ошибка");
-                    //loginTextBox.Text = "";
-                    //passwordPasswordBox.Clear();
-                    //passwordTextBox.Text = "";
-                    //loginTextBox.Focus();
+                    //var window = new AdminMainWindow();
+                    //window.Show();
+                    //this.Close();
+                    MessageBox.Show("Введены неверные данные!", "Ошибка");
+                    loginTextBox.Text = "";
+                    passwordPasswordBox.Clear();
+                    passwordTextBox.Text = "";
+                    loginTextBox.Focus();
                 }
             }   
         }

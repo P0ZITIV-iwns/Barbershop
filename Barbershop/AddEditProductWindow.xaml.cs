@@ -20,7 +20,7 @@ namespace Barbershop
     {
         private Product _tempProduct;
         string _imageSource = Environment.CurrentDirectory + "\\..\\..\\..\\" + "Images\\Products";
-        string _imageSourceToDatabase = "Images\\Products";
+        string _imageSourceToDatabase = "Images/Products/";
         private OpenFileDialog _img;
         public AddEditProductWindow(Product product)
         {
@@ -84,8 +84,6 @@ namespace Barbershop
             {
                 filePath = System.IO.Path.Combine(_imageSource, _img.SafeFileName);
                 File.Copy(_img.FileName, filePath, true);
-                MessageBox.Show(_imageSource);
-                MessageBox.Show(filePath);
                 //filePath = "Images/Products/noProductImage.png";
                 filePathBase = System.IO.Path.Combine(_imageSourceToDatabase, _img.SafeFileName);
             }

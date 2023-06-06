@@ -70,7 +70,6 @@
 
   <ItemGroup>
     <Resource Include="Images\backArrow.png" />
-    <Resource Include="Images\Products\10. Цветы.jpg" />
     <Resource Include="Images\Products\noProductImage.png" />
     <Resource Include="Images\Products\Воск1.png" />
     <Resource Include="Images\Products\Воск2.png" />

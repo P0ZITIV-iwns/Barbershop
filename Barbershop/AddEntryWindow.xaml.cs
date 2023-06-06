@@ -147,9 +147,9 @@ namespace Barbershop
                     ID_client = currentClient.Id,
                     ID_employee = currentEmployee.Id,
                     ID_service = currentService.Id,
-                    DateTime = dateTimeTextBox.Text,
+                    DateTime = DateTime.ParseExact(dateTimeTextBox.Text, "yyyy-MM-ddTHH:mm:ss", CultureInfo.InvariantCulture),
                     Status = "Согласование"
-                });
+            });
             }
             Close();
         }

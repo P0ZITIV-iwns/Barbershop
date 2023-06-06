@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,16 +27,16 @@ namespace Barbershop
             categoryProductPageView.Text = _product.Category;
             priceProductPageView.Text = (String.Format("{0:0.##}", _product.Price));
             descriptionProductPageView.Text = _product.Description;
-            //BitmapImage _bitmapImage = new BitmapImage();
-            //using (Stream stream = File.OpenRead(_product.Image))
-            //{
-            //    _bitmapImage.BeginInit();
-            //    _bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-            //    _bitmapImage.StreamSource = stream;
-            //    _bitmapImage.EndInit();
-            //}
-            BitmapImage bitmap = new BitmapImage(new Uri(_product.Image, UriKind.Relative));
-            imageProductPageView.Source = bitmap;
+            BitmapImage _bitmapImage = new BitmapImage();
+            var source = Environment.CurrentDirectory + "\\..\\..\\..\\" + _product.Image;
+            using (var stream = File.OpenRead(source))
+            {
+                _bitmapImage.BeginInit();
+                _bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                _bitmapImage.StreamSource = stream;
+                _bitmapImage.EndInit();
+            }
+            imageProductPageView.Source = _bitmapImage;
 
             //imageProductPageView.Source = new BitmapImage(new Uri(_product.Image, UriKind.Relative));
         }

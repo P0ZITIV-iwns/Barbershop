@@ -71,7 +71,7 @@ namespace Barbershop
             _tempEntry.ServiceEntity.Name = (string)serviceNameComboBox.SelectedValue;
             _tempEntry.EmployeeEntity.LastName = (string)employeeNameComboBox.SelectedValue;
             var cultureInfo = new CultureInfo("ru-RU");
-            _tempEntry.DateTime = Convert.ToDateTime(dateTimeTextBox.Text).ToString("dd/MM/yyyy hh:G");
+            _tempEntry.DateTime = Convert.ToDateTime(dateTimeTextBox.Text);
             _tempEntry.Status = (string)statusComboBox.SelectedValue;
             DatabaseControl.UpdateEntry(_tempEntry);
             Close();
