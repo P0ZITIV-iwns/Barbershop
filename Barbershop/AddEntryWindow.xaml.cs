@@ -6,6 +6,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -34,6 +35,7 @@ namespace Barbershop
                                                   group _service
                                                   by _service.Category;
             serviceNameComboBox.ItemsSource = from _service in DatabaseControl.GetServices()
+                                              where !string.IsNullOrEmpty(_service.Name)
                                               group _service
                                               by _service.Name;
             employeeNameComboBox.ItemsSource = from _emloyee in DatabaseControl.GetEmployees()
@@ -53,14 +55,14 @@ namespace Barbershop
             if (textBlock.Text == "Мужская")
             {
                 serviceNameComboBox.ItemsSource = from _service in DatabaseControl.GetServices()
-                                                  where _service.Category == "Мужская"
+                                                  where _service.Category == "Мужская" && !string.IsNullOrEmpty(_service.Name)
                                                   group _service
                                                   by _service.Name;
             }
             else
             {
                 serviceNameComboBox.ItemsSource = from _service in DatabaseControl.GetServices()
-                                                  where _service.Category == "Женская"
+                                                  where _service.Category == "Женская" && !string.IsNullOrEmpty(_service.Name)
                                                   group _service
                                                   by _service.Name;
             }
@@ -79,7 +81,7 @@ namespace Barbershop
             if (textBlock.Text == "Мужская")
             {
                 serviceNameComboBox.ItemsSource = from _service in DatabaseControl.GetServices()
-                                                  where _service.Category == "Мужская"
+                                                  where _service.Category == "Мужская" && !string.IsNullOrEmpty(_service.Name)
                                                   group _service
                                                   by _service.Name;
 
@@ -87,7 +89,7 @@ namespace Barbershop
             else
             {
                 serviceNameComboBox.ItemsSource = from _service in DatabaseControl.GetServices()
-                                                  where _service.Category == "Женская"
+                                                  where _service.Category == "Женская" && !string.IsNullOrEmpty(_service.Name)
                                                   group _service
                                                   by _service.Name;
             }
@@ -113,33 +115,108 @@ namespace Barbershop
 
         private void saveAddButton_Click(object sender, RoutedEventArgs e)
         {
-            using (DbAppContext ctx = new DbAppContext())
+            if (Check())
             {
-                var currentClient = ctx.Client.FirstOrDefault(u => u.Phone == phoneTextBox.Text);
-                if (currentClient == null)
+                using (DbAppContext ctx = new DbAppContext())
                 {
-                    DatabaseControl.AddClient(new Client
+                    var currentClient = ctx.Client.FirstOrDefault(u => u.Phone == phoneTextBox.Text);
+                    if (currentClient == null)
                     {
-                        FirstName = firstNameTextBox.Text,
-                        LastName = lastNameTextBox.Text,
-                        Phone = phoneTextBox.Text
+                        DatabaseControl.AddClient(new Client
+                        {
+                            FirstName = firstNameTextBox.Text,
+                            LastName = lastNameTextBox.Text,
+                            Phone = phoneTextBox.Text
+                        });
+                    }
+
+                    currentClient = ctx.Client.FirstOrDefault(u => u.Phone == phoneTextBox.Text);
+                    var currentEmployee = ctx.Employee.FirstOrDefault(u => u.LastName == employeeNameComboBox.SelectedValue);
+                    var currentService = ctx.Service.FirstOrDefault(u => u.Name == serviceNameComboBox.SelectedValue);
+
+                    DatabaseControl.AddEntry(new Entry
+                    {
+                        ID_client = currentClient.Id,
+                        ID_employee = currentEmployee.Id,
+                        ID_service = currentService.Id,
+                        DateTime = DateTime.SpecifyKind(Convert.ToDateTime(dateTimeTextBox.Text), DateTimeKind.Utc),
+                        Status = "Согласование"
                     });
                 }
-
-                currentClient = ctx.Client.FirstOrDefault(u => u.Phone == phoneTextBox.Text);
-                var currentEmployee = ctx.Employee.FirstOrDefault(u => u.LastName == employeeNameComboBox.SelectedValue);
-                var currentService = ctx.Service.FirstOrDefault(u => u.Name == serviceNameComboBox.SelectedValue);
-
-                DatabaseControl.AddEntry(new Entry
-                {
-                    ID_client = currentClient.Id,
-                    ID_employee = currentEmployee.Id,
-                    ID_service = currentService.Id,
-                    DateTime = DateTime.SpecifyKind(Convert.ToDateTime(dateTimeTextBox.Text), DateTimeKind.Utc),
-                    Status = "Согласование"
-                });
+                Close();
             }
-            Close();
+        }
+
+        // проверка валидности
+        private bool Check()
+        {
+            using (DbAppContext ctx = new DbAppContext())
+            {
+                string firstName = firstNameTextBox.Text.Trim();
+                string lastName = lastNameTextBox.Text.Trim();
+                string phoneNumber = phoneTextBox.Text.Trim();
+                string category = serviceCategoryComboBox.Text;
+                string service = serviceNameComboBox.Text;
+                string employee = employeeNameComboBox.Text;
+                string dateTime = dateTimeTextBox.Text;
+
+                if (string.IsNullOrEmpty(firstName) && string.IsNullOrEmpty(phoneNumber) && string.IsNullOrEmpty(category) && string.IsNullOrEmpty(service) && string.IsNullOrEmpty(employee) && string.IsNullOrEmpty(dateTime))
+                {
+                    MessageBox.Show("Поля для ввода имени, телефона, категории, услуги, мастера, даты и времени обязательны!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+                if (string.IsNullOrEmpty(firstName))
+                {
+                    MessageBox.Show("Поле для ввода имени обязательно!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+                if (string.IsNullOrEmpty(phoneNumber))
+                {
+                    MessageBox.Show("Поле для ввода номера телефона обязательно!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+                if (string.IsNullOrEmpty(category))
+                {
+                    MessageBox.Show("Поле для выбора категории обязательно!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+                if (string.IsNullOrEmpty(service))
+                {
+                    MessageBox.Show("Поле для выбора услуги обязательно!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+                if (string.IsNullOrEmpty(employee))
+                {
+                    MessageBox.Show("Поле для выбора мастера обязательно!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+                if (string.IsNullOrEmpty(dateTime))
+                {
+                    MessageBox.Show("Поле для выбора даты и времени обязательно!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+                if (!Regex.IsMatch(firstName, "^[а-яА-Яa-zA-Z]{2,}$"))
+                {
+                    MessageBox.Show("Имя должно содержать не менее двух символов и состоять только из букв русского или английского алфавита!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+                if (!string.IsNullOrEmpty(lastName) && !Regex.IsMatch(lastName, "^[а-яА-Яa-zA-Z]{2,}$"))
+                {
+                    MessageBox.Show("Фамилия должна содержать не менее двух символов и состоять только из букв русского или английского алфавита!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+                if (!Regex.IsMatch(phoneNumber, "^[0-9]{10}$"))
+                {
+                    MessageBox.Show("Номер телефона должен состоять из 10 цифр!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+                if (!DateTime.TryParseExact(dateTime, "dd.MM.yyyy HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime resultDateTime))
+                {
+                    MessageBox.Show("Дата и время должна выглядеть следующего формата: дд.мм.гггг чч:мм", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+                return true;
+            }
         }
     }
 }

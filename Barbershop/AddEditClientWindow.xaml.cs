@@ -45,11 +45,14 @@ namespace Barbershop
 
         private void saveEditButton_Click(object sender, RoutedEventArgs e)
         {
-            _tempClient.FirstName = firstNameTextBox.Text;
-            _tempClient.LastName = lastNameTextBox.Text;
-            _tempClient.Phone = phoneTextBox.Text;
-            DatabaseControl.UpdateClient(_tempClient);
-            Close();
+            if (Check())
+            {
+                _tempClient.FirstName = firstNameTextBox.Text;
+                _tempClient.LastName = lastNameTextBox.Text;
+                _tempClient.Phone = phoneTextBox.Text;
+                DatabaseControl.UpdateClient(_tempClient);
+                Close();
+            }
         }
 
         private void saveAddButton_Click(object sender, RoutedEventArgs e)
@@ -64,41 +67,55 @@ namespace Barbershop
                 });
                 Close();
             }
-            
         }
 
 
         // проверка валидности
         private bool Check()
         {
-
             using (DbAppContext ctx = new DbAppContext())
             {
-                var currentClients = ctx.Client.FirstOrDefault(c => c.Phone == phoneTextBox.Text);
-                if (string.IsNullOrWhiteSpace(firstNameTextBox.Text) && string.IsNullOrWhiteSpace(phoneTextBox.Text))
+                string firstName = firstNameTextBox.Text.Trim();
+                string lastName = lastNameTextBox.Text.Trim();
+                string phoneNumber = phoneTextBox.Text.Trim();
+
+                if (string.IsNullOrEmpty(firstName) && string.IsNullOrEmpty(phoneNumber))
                 {
-                    MessageBox.Show("Поля для ввода имени и телефона обязательны!", "Ошибка");
+                    MessageBox.Show("Поля для ввода имени и телефона обязательны!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     return false;
                 }
-                else if (string.IsNullOrWhiteSpace(firstNameTextBox.Text))
+                if (string.IsNullOrEmpty(firstName))
                 {
-                    MessageBox.Show("Поле для ввода имени обязательно!", "Ошибка");
+                    MessageBox.Show("Поле для ввода имени обязательно!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     return false;
                 }
-                else if (string.IsNullOrWhiteSpace(phoneTextBox.Text))
+                if (string.IsNullOrEmpty(phoneNumber))
                 {
-                    MessageBox.Show("Поле для ввода телефона обязательно!", "Ошибка");
+                    MessageBox.Show("Поле для ввода номера телефона обязательно!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     return false;
                 }
-                else if (currentClients != null)
+                if (!Regex.IsMatch(firstName, "^[а-яА-Яa-zA-Z]{2,}$"))
                 {
-                    MessageBox.Show("Клиент с введёным телефоном уже имеется в базе данных!", "Ошибка");
+                    MessageBox.Show("Имя должно содержать не менее двух символов и состоять только из букв русского или английского алфавита!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     return false;
                 }
-                else
+                if (!string.IsNullOrEmpty(lastName) && !Regex.IsMatch(lastName, "^[а-яА-Яa-zA-Z]{2,}$"))
                 {
-                    return true;
+                    MessageBox.Show("Фамилия должна содержать не менее двух символов и состоять только из букв русского или английского алфавита!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
                 }
+                if (!Regex.IsMatch(phoneNumber, "^[0-9]{10}$"))
+                {
+                    MessageBox.Show("Номер телефона должен состоять из 10 цифр!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+                var currentClients = ctx.Client.FirstOrDefault(c => c.Phone == phoneNumber);
+                if (currentClients != null && _tempClient == null)
+                {
+                    MessageBox.Show("Клиент с указанным номером телефона уже имеется в базе данных!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+                return true;
             }
         }
     }

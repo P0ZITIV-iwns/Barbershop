@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -65,51 +66,116 @@ namespace Barbershop
         }
         private void saveEditButton_Click(object sender, RoutedEventArgs e)
         {
-            _tempProduct.Name = nameTextBox.Text;
-            _tempProduct.Category = (string)categoryComboBox.SelectedValue;
-            _tempProduct.Description = descriptionTextBox.Text;
-            _tempProduct.Price = Convert.ToDecimal(priceTextBox.Text);
-            if (_tempProduct.Image != "Images/Products/noProductImage.png")
+            if (Check())
             {
-                File.Delete(_tempProduct.FullPathToImage);
+                _tempProduct.Name = nameTextBox.Text;
+                _tempProduct.Category = (string)categoryComboBox.SelectedValue;
+                _tempProduct.Description = descriptionTextBox.Text;
+                _tempProduct.Price = Convert.ToDecimal(priceTextBox.Text);
+                if (_tempProduct.Image != "Images/Products/noProductImage.png")
+                {
+                    File.Delete(_tempProduct.FullPathToImage);
+                }
+                if (_img == null)
+                {
+                    _tempProduct.Image = "Images/Products/noProductImage.png";
+                }
+                else
+                {
+                    filePath = System.IO.Path.Combine(_imageSource, _img.SafeFileName);
+                    File.Copy(_img.FileName, filePath, true);
+                    _tempProduct.Image = System.IO.Path.Combine(_imageSourceToDatabase, _img.SafeFileName);
+                }
+                DatabaseControl.UpdateProduct(_tempProduct);
+                Close();
             }
-            if (_img == null)
-            {
-                _tempProduct.Image = "Images/Products/noProductImage.png";
-            }
-            else
-            {
-                filePath = System.IO.Path.Combine(_imageSource, _img.SafeFileName);
-                File.Copy(_img.FileName, filePath, true);
-                _tempProduct.Image = System.IO.Path.Combine(_imageSourceToDatabase, _img.SafeFileName);
-            }
-
-            DatabaseControl.UpdateProduct(_tempProduct);
-            Close();
         }
 
         private void saveAddButton_Click(object sender, RoutedEventArgs e)
         {
-            string filePathBase;
-            if (_img == null)
+            if (Check())
             {
-                filePathBase = "Images/Products/noProductImage.png";
+                string filePathBase;
+                if (_img == null)
+                {
+                    filePathBase = "Images/Products/noProductImage.png";
+                }
+                else
+                {
+                    filePath = System.IO.Path.Combine(_imageSource, _img.SafeFileName);
+                    File.Copy(_img.FileName, filePath, true);
+                    filePathBase = System.IO.Path.Combine(_imageSourceToDatabase, _img.SafeFileName);
+                }
+                DatabaseControl.AddProduct(new Product
+                {
+                    Name = nameTextBox.Text,
+                    Category = (string)categoryComboBox.SelectedValue,
+                    Description = descriptionTextBox.Text,
+                    Price = Convert.ToDecimal(priceTextBox.Text),
+                    Image = filePathBase
+                });
+                Close();
             }
-            else
+        }
+
+        // проверка валидности
+        private bool Check()
+        {
+            using (DbAppContext ctx = new DbAppContext())
             {
-                filePath = System.IO.Path.Combine(_imageSource, _img.SafeFileName);
-                File.Copy(_img.FileName, filePath, true);
-                filePathBase = System.IO.Path.Combine(_imageSourceToDatabase, _img.SafeFileName);
+                string name = nameTextBox.Text.Trim();
+                string category = categoryComboBox.Text.Trim();
+                string description = descriptionTextBox.Text.Trim();
+                string price = priceTextBox.Text;
+
+                if (string.IsNullOrEmpty(name) && string.IsNullOrEmpty(category) && string.IsNullOrEmpty(price))
+                {
+                    MessageBox.Show("Поля для ввода наименования, категории и стоимости обязательны!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+                if (string.IsNullOrEmpty(name))
+                {
+                    MessageBox.Show("Поле для ввода наименования обязательно!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+                if (string.IsNullOrEmpty(category))
+                {
+                    MessageBox.Show("Поле для выбора категории обязательно!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+                if (string.IsNullOrEmpty(price))
+                {
+                    MessageBox.Show("Поле для ввода стоимости обязательно!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+                var currentProducts = ctx.Product.FirstOrDefault(c => c.Name == name);
+                if (currentProducts != null && _tempProduct == null)
+                {
+                    MessageBox.Show("Товар с указанным наименованием уже имеется в базе данных!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+                if (!Regex.IsMatch(name, "[а-яА-Яa-zA-Z]"))
+                {
+                    MessageBox.Show("Наименование должно содержать не менее трёх символов и состоять только из букв русского или английского алфавита!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+                if (!string.IsNullOrEmpty(description) && !Regex.IsMatch(description, "[а-яА-Яa-zA-Z]") && description.Length >= 3)
+                {
+                    MessageBox.Show("Описание должно содержать не менее трёх символов и состоять только из букв русского или английского алфавита!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+                if (!decimal.TryParse(price, out decimal Price))
+                {
+                    MessageBox.Show("Стоимость должна принимать числа!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+                if (decimal.Parse(price) <= 0)
+                {
+                    MessageBox.Show("Стоимость не может быть меньше или равна нулю!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+                return true;
             }
-            DatabaseControl.AddProduct(new Product
-            {
-                Name = nameTextBox.Text,
-                Category = (string)categoryComboBox.SelectedValue,
-                Description = descriptionTextBox.Text,
-                Price = Convert.ToDecimal(priceTextBox.Text),
-                Image = filePathBase
-            });
-            Close();
         }
     }
 }
