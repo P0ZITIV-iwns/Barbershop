@@ -28,6 +28,7 @@ namespace Barbershop
                 countInProcessEntries.Text = ctx.Entry.Where(item => item.Status == "В процессе").Count().ToString();
                 countCancelEntries.Text = ctx.Entry.Where(item => item.Status == "Отменена").Count().ToString();
                 countCompletedEntries.Text = ctx.Finance.Count().ToString();
+                countAllEntries.Text = ctx.Entry.Count().ToString();
 
                 countSellWomenServices.Text = ctx.Entry.Where(item => item.ServiceEntity.Category == "Женская" && item.Status == "Завершена").Count().ToString();
                 sumSellWomenServices.Text = String.Format("{0:0.##}", ctx.Entry.Where(item => item.ServiceEntity.Category == "Женская" && item.Status == "Завершена").GroupBy(item => item.ServiceEntity.Price).Select(item => item.Key).Sum());
@@ -54,6 +55,7 @@ namespace Barbershop
                     countInProcessEntries.Text = ctx.Entry.Where(item => item.Status == "В процессе").Count().ToString();
                     countCancelEntries.Text = ctx.Entry.Where(item => item.Status == "Отменена").Count().ToString();
                     countCompletedEntries.Text = ctx.Finance.Count().ToString();
+                    countAllEntries.Text = ctx.Entry.Count().ToString();
 
                     countSellWomenServices.Text = ctx.Entry.Where(item => item.ServiceEntity.Category == "Женская" && item.Status == "Завершена").Count().ToString();
                     sumSellWomenServices.Text = String.Format("{0:0.##}", ctx.Entry.Where(item => item.ServiceEntity.Category == "Женская" && item.Status == "Завершена").GroupBy(item => item.ServiceEntity.Price).Select(item => item.Key).Sum());
@@ -67,6 +69,7 @@ namespace Barbershop
                     countInProcessEntries.Text = "0";
                     countCancelEntries.Text = "0";
                     countCompletedEntries.Text = "0";
+                    countAllEntries.Text = "0";
 
                     countSellWomenServices.Text = "0";
                     sumSellWomenServices.Text = "0";
@@ -80,6 +83,7 @@ namespace Barbershop
                     countInProcessEntries.Text = "1";
                     countCancelEntries.Text = "1";
                     countCompletedEntries.Text = "1";
+                    countAllEntries.Text = "1";
 
                     countSellWomenServices.Text = "1";
                     sumSellWomenServices.Text = "1";

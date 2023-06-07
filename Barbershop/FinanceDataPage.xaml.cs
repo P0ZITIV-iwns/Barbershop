@@ -31,11 +31,11 @@ namespace Barbershop
                         select new
                         {
                             ServiceName = service.Name,
+                            ServicePrice = service.Price,
                             EmployeeLastName = employee.LastName,
                             EmployeeFirstName = employee.FirstName,
                             finance.Id,
-                            finance.DateTime,
-                            finance.Amount
+                            finance.DateTime
                         };
             financeDataGridView.ItemsSource = query.ToList();
         }

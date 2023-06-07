@@ -24,7 +24,7 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Дата и время" Binding="{Binding Path=DateTime, StringFormat=\{0:dd.MM.yyyy HH:mm\}}" Width="*" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Услуга" Binding="{Binding Path=ServiceName}" Width="*" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Сумма" Binding="{Binding Path=Amount}" Width="*" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Сумма" Binding="{Binding Path=ServicePrice}" Width="*" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Мастер" Width="*" IsReadOnly="True">
                         <DataGridTextColumn.Binding>
                             <MultiBinding StringFormat="{}{0} {1}">
