@@ -20,7 +20,8 @@ namespace Barbershop
         public ServiceDataPage()
         {
             InitializeComponent();
-            servicesDataGridView.ItemsSource = DatabaseControl.GetServices();
+            servicesDataGridView.ItemsSource = from service in DatabaseControl.GetServices() where !string.IsNullOrEmpty(service.Name) select service;
+
         }
 
         private void searchTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -70,7 +71,7 @@ namespace Barbershop
         public void RefreshTable()
         {
             servicesDataGridView.ItemsSource = null;
-            servicesDataGridView.ItemsSource = DatabaseControl.GetServices();
+            servicesDataGridView.ItemsSource = from service in DatabaseControl.GetServices() where !string.IsNullOrEmpty(service.Name) select service;
         }
 
     }

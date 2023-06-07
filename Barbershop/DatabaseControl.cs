@@ -14,7 +14,10 @@ namespace Barbershop
         {
             using (DbAppContext ctx = new DbAppContext())
             {
-                return ctx.Service.ToList();
+                List<Service> _services = ctx.Service.ToList();
+                _services.Insert(0, new Service { Category = "Мужская" });
+                _services.Insert(1, new Service { Category = "Женская" });
+                return _services;
                 //return ctx.Service.Include(p => p.EntryEntities).ToList();
             }
         }
@@ -32,6 +35,12 @@ namespace Barbershop
             {
                 List<Product> _products = ctx.Product.ToList();
                 _products.Insert(0, new Product { Category = "Все" });
+                _products.Insert(1, new Product { Category = "Воск" });
+                _products.Insert(2, new Product { Category = "Лак" });
+                _products.Insert(3, new Product { Category = "Гель" });
+                _products.Insert(4, new Product { Category = "Шампунь" });
+                _products.Insert(5, new Product { Category = "Краска" });
+                _products.Insert(6, new Product { Category = "Кондиционер" });
                 return _products;
             }
         }

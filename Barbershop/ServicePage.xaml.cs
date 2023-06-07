@@ -21,8 +21,8 @@ namespace Barbershop
         public ServicePage()
         {
             InitializeComponent();
-            servicesManListBox.ItemsSource = from service in DatabaseControl.GetServices() where service.Category == "Мужская" select service;
-            servicesWomanListBox.ItemsSource = from service in DatabaseControl.GetServices() where service.Category == "Женская" select service;
+            servicesManListBox.ItemsSource = from service in DatabaseControl.GetServices() where service.Category == "Мужская" && !string.IsNullOrEmpty(service.Name) select service;
+            servicesWomanListBox.ItemsSource = from service in DatabaseControl.GetServices() where service.Category == "Женская" && !string.IsNullOrEmpty(service.Name) select service;
         }
         private void ToggleManButton_Click(object sender, RoutedEventArgs e)
         {

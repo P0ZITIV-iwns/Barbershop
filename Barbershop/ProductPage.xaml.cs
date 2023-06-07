@@ -25,7 +25,7 @@ namespace Barbershop
                                            by product.Category;
 
             productItemsControl.ItemsSource = from product in DatabaseControl.GetProducts()
-                                              where product.Category != "Все"
+                                              where !string.IsNullOrEmpty(product.Name)
                                               select product;
         }
         // Фильтрация товаров из выпадающего списка
@@ -41,13 +41,13 @@ namespace Barbershop
             if (textBlock.Text == "Все")
             {
                 productItemsControl.ItemsSource = from product in DatabaseControl.GetProducts()
-                                                  where product.Category != textBlock.Text
+                                                  where product.Category != textBlock.Text && !string.IsNullOrEmpty(product.Name)
                                                   select product;
             }
             else
             {
                 productItemsControl.ItemsSource = from product in DatabaseControl.GetProducts()
-                                                  where product.Category == textBlock.Text
+                                                  where product.Category == textBlock.Text && !string.IsNullOrEmpty(product.Name)
                                                   select product;
             }
             productItemsControl.ScrollIntoView(productItemsControl.Items.GetItemAt(0));
