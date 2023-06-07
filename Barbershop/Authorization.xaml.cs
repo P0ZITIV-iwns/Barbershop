@@ -77,24 +77,24 @@ namespace Barbershop
             }
         }
 
-        private void checkPassword_Click(object sender, RoutedEventArgs e)
-        {
-            var checkBox = sender as CheckBox;
-            if (checkBox.IsChecked.Value)
-            {
-                passwordTextBox.Text = passwordPasswordBox.Password; // Копируем пароль в TextBox из PasswordBox
-                passwordTextBox.Visibility = Visibility.Visible; // Отобразить TextBox
-                passwordPasswordBox.Visibility = Visibility.Collapsed; // Скрыть PasswordBox
+        //private void checkPassword_Click(object sender, RoutedEventArgs e)
+        //{
+        //    var checkBox = sender as CheckBox;
+        //    if (checkBox.IsChecked.Value)
+        //    {
+        //        passwordTextBox.Text = passwordPasswordBox.Password; // Копируем пароль в TextBox из PasswordBox
+        //        passwordTextBox.Visibility = Visibility.Visible; // Отобразить TextBox
+        //        passwordPasswordBox.Visibility = Visibility.Collapsed; // Скрыть PasswordBox
 
-            }
-            else
-            {
-                passwordPasswordBox.Password = passwordTextBox.Text; // Копируем пароль в PasswordBox из TextBox 
-                passwordTextBox.Visibility = Visibility.Collapsed; // Скрыть TextBox
-                passwordPasswordBox.Visibility = Visibility.Visible; // Отобразить PasswordBox
+        //    }
+        //    else
+        //    {
+        //        passwordPasswordBox.Password = passwordTextBox.Text; // Копируем пароль в PasswordBox из TextBox 
+        //        passwordTextBox.Visibility = Visibility.Collapsed; // Скрыть TextBox
+        //        passwordPasswordBox.Visibility = Visibility.Visible; // Отобразить PasswordBox
 
-            }
-        }
+        //    }
+        //}
 
 
         private void imagePassword_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
