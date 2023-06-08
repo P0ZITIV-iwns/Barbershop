@@ -224,8 +224,11 @@ namespace Barbershop
         {
             using (DbAppContext ctx = new DbAppContext())
             {
-                ctx.Employee.Remove(employee);
-                ctx.SaveChanges();
+                if (employee.Post == "Парикмахер")
+                {
+                    ctx.Employee.Remove(employee);
+                    ctx.SaveChanges();
+                } 
             }
             if (employee.Photo != "Images/Employees/noEmployeeImage.png")
             {

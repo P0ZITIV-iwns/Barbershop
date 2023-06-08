@@ -19,6 +19,7 @@
             <ColumnDefinition Width="0.4*"/>
             <ColumnDefinition Width="0.1*"/>
         </Grid.ColumnDefinitions>
+        <TextBlock Grid.ColumnSpan="4" Text="Настройки сотрудника" FontSize="44" FontWeight="Bold" Margin="20" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Center"/>
         <Border CornerRadius="6" Grid.Column="1" Grid.Row="1" BorderBrush="Black" Background="White" BorderThickness="2" Padding="0" Margin="10">
             <Viewbox Stretch="Uniform" Margin="10" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <StackPanel>
