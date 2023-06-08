@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace Barbershop
 {
@@ -65,31 +66,33 @@ namespace Barbershop
                 }
                 else if (infoTimeComboBox.SelectedIndex == 1)
                 {
-                    countAssignedEntries.Text = "0";
-                    countInProcessEntries.Text = "0";
-                    countCancelEntries.Text = "0";
-                    countCompletedEntries.Text = "0";
-                    countAllEntries.Text = "0";
+                    DateTime lastWeek = DateTime.Today.AddDays(-7);
+                    countAssignedEntries.Text = ctx.Entry.Where(item => item.Status == "Назначена" && item.DateTime >= lastWeek).Count().ToString();
+                    countInProcessEntries.Text = ctx.Entry.Where(item => item.Status == "В процессе" && item.DateTime >= lastWeek).Count().ToString();
+                    countCancelEntries.Text = ctx.Entry.Where(item => item.Status == "Отменена" && item.DateTime >= lastWeek).Count().ToString(); ;
+                    countCompletedEntries.Text = ctx.Finance.Where(item => item.DateTime >= lastWeek).Count().ToString();
+                    countAllEntries.Text = ctx.Entry.Where(item => item.DateTime >= lastWeek).Count().ToString();
 
-                    countSellWomenServices.Text = "0";
-                    sumSellWomenServices.Text = "0";
-                    countSellManServices.Text = "0";
-                    sumSellManServices.Text = "0";
-                    sumAllSellServices.Text = "0";
+                    countSellWomenServices.Text = ctx.Entry.Where(item => item.ServiceEntity.Category == "Женская" && item.Status == "Завершена" && item.DateTime >= lastWeek).Count().ToString();
+                    sumSellWomenServices.Text = String.Format("{0:0.##}", ctx.Entry.Where(item => item.ServiceEntity.Category == "Женская" && item.Status == "Завершена" && item.DateTime >= lastWeek).GroupBy(item => item.ServiceEntity.Price).Select(item => item.Key).Sum());
+                    countSellManServices.Text = ctx.Entry.Where(item => item.ServiceEntity.Category == "Мужская" && item.Status == "Завершена" && item.DateTime >= lastWeek).Count().ToString();
+                    sumSellManServices.Text = String.Format("{0:0.##}", ctx.Entry.Where(item => item.ServiceEntity.Category == "Мужская" && item.Status == "Завершена" && item.DateTime >= lastWeek).GroupBy(item => item.ServiceEntity.Price).Select(item => item.Key).Sum());
+                    sumAllSellServices.Text = String.Format("{0:0.##}", ctx.Entry.Where(item => item.Status == "Завершена" && item.DateTime >= lastWeek).GroupBy(item => item.ServiceEntity.Price).Select(item => item.Key).Sum());
                 }
                 else if (infoTimeComboBox.SelectedIndex == 2)
                 {
-                    countAssignedEntries.Text = "1";
-                    countInProcessEntries.Text = "1";
-                    countCancelEntries.Text = "1";
-                    countCompletedEntries.Text = "1";
-                    countAllEntries.Text = "1";
+                    DateTime lastMonth = DateTime.Today.AddDays(-30);
+                    countAssignedEntries.Text = ctx.Entry.Where(item => item.Status == "Назначена" && item.DateTime >= lastMonth).Count().ToString();
+                    countInProcessEntries.Text = ctx.Entry.Where(item => item.Status == "В процессе" && item.DateTime >= lastMonth).Count().ToString();
+                    countCancelEntries.Text = ctx.Entry.Where(item => item.Status == "Отменена" && item.DateTime >= lastMonth).Count().ToString(); ;
+                    countCompletedEntries.Text = ctx.Finance.Where(item => item.DateTime >= lastMonth).Count().ToString();
+                    countAllEntries.Text = ctx.Entry.Where(item => item.DateTime >= lastMonth).Count().ToString();
 
-                    countSellWomenServices.Text = "1";
-                    sumSellWomenServices.Text = "1";
-                    countSellManServices.Text = "1";
-                    sumSellManServices.Text = "1";
-                    sumAllSellServices.Text = "1";
+                    countSellWomenServices.Text = ctx.Entry.Where(item => item.ServiceEntity.Category == "Женская" && item.Status == "Завершена" && item.DateTime >= lastMonth).Count().ToString();
+                    sumSellWomenServices.Text = String.Format("{0:0.##}", ctx.Entry.Where(item => item.ServiceEntity.Category == "Женская" && item.Status == "Завершена" && item.DateTime >= lastMonth).GroupBy(item => item.ServiceEntity.Price).Select(item => item.Key).Sum());
+                    countSellManServices.Text = ctx.Entry.Where(item => item.ServiceEntity.Category == "Мужская" && item.Status == "Завершена" && item.DateTime >= lastMonth).Count().ToString();
+                    sumSellManServices.Text = String.Format("{0:0.##}", ctx.Entry.Where(item => item.ServiceEntity.Category == "Мужская" && item.Status == "Завершена" && item.DateTime >= lastMonth).GroupBy(item => item.ServiceEntity.Price).Select(item => item.Key).Sum());
+                    sumAllSellServices.Text = String.Format("{0:0.##}", ctx.Entry.Where(item => item.Status == "Завершена" && item.DateTime >= lastMonth).GroupBy(item => item.ServiceEntity.Price).Select(item => item.Key).Sum());
                 }
             }
         }
