@@ -93,7 +93,7 @@ namespace Barbershop
             {
                 string login = loginTextBox.Text.Trim();
                 string password = passwordTextBox.Text.Trim();
-                if (!Regex.IsMatch(login, @"^[a-zA-Z\d!#$%&'*+\-/=?^_`{|}~]{4,}$"))
+                if (!Regex.IsMatch(login, @"^[a-zA-Z\d*_.-]{4,}$"))
                 {
                     MessageBox.Show("Логин должен содержать не менее четырёх символов и состоять из букв английского алфавита, цифр и спецсимволов!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     return false;
@@ -107,7 +107,7 @@ namespace Barbershop
             {
                 string login = loginTextBox.Text.Trim();
                 string password = passwordTextBox.Text.Trim();
-                if (!Regex.IsMatch(password, @"^[a-zA-Z\d!#$%&'*+\-/=?^_`{|}~]{5,}$"))
+                if (!Regex.IsMatch(password, @"^[a-zA-Z\d!#@$%&'*+\-/=?^_`{|}~]{5,}$"))
                 {
                     MessageBox.Show("Пароль должен содержать не менее пяти символов и состоять из букв английского алфавита, цифр и спецсимволов!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     return false;
