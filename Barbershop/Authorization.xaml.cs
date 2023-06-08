@@ -38,7 +38,7 @@ namespace Barbershop
                     //var window = new AdminMainWindow();
                     //window.Show();
                     //this.Close();
-                    MessageBox.Show("Введены неверные данные!", "Ошибка");
+                    MessageBox.Show("Введены неверные данные!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     loginTextBox.Text = "";
                     passwordPasswordBox.Clear();
                     passwordTextBox.Text = "";

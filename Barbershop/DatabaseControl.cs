@@ -17,6 +17,7 @@ namespace Barbershop
                 List<Service> _services = ctx.Service.ToList();
                 _services.Insert(0, new Service { Category = "Мужская" });
                 _services.Insert(1, new Service { Category = "Женская" });
+                _services = ctx.Service.Where(item => !string.IsNullOrEmpty(item.Name)).ToList();
                 return _services;
                 //return ctx.Service.Include(p => p.EntryEntities).ToList();
             }
@@ -25,8 +26,11 @@ namespace Barbershop
         {
             using (DbAppContext ctx = new DbAppContext())
             {
-                return ctx.Employee.ToList();
-                //return ctx.Employee.Include(p => p.EntryEntities).ToList();
+                List<Employee> _employees = ctx.Employee.ToList();
+                _employees.Insert(0, new Employee { Post = "Администратор" });
+                _employees.Insert(1, new Employee { Post = "Парикмахер" });
+                _employees = ctx.Employee.Where(item => !string.IsNullOrEmpty(item.Phone)).ToList();
+                return _employees;
             }
         }
         public static List<Product> GetProducts()
@@ -63,6 +67,7 @@ namespace Barbershop
                 _entries.Insert(2, new Entry { Status = "В процессе" });
                 _entries.Insert(3, new Entry { Status = "Завершена" });
                 _entries.Insert(4, new Entry { Status = "Отменена" });
+                _entries = ctx.Entry.Where(item => item.DateTime != DateTime.MinValue).ToList();
                 return _entries;
             }
         }

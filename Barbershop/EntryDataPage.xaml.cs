@@ -21,9 +21,7 @@ namespace Barbershop
         {
             InitializeComponent();
 
-            entriesDataGridView.ItemsSource = from _entry in DatabaseControl.GetEntries()
-                                              where _entry.DateTime != DateTime.MinValue
-                                              select _entry;
+            entriesDataGridView.ItemsSource = DatabaseControl.GetEntries();
             //using (DbAppContext ctx = new DbAppContext())
             //{
             //    entriesDataGridView.ItemsSource = ctx.Entry.Where(item => item.DateTime != DateTime.MinValue).ToList();
@@ -113,16 +111,7 @@ namespace Barbershop
         public void RefreshTable()
         {
             entriesDataGridView.ItemsSource = null;
-            entriesDataGridView.ItemsSource = from _entry in DatabaseControl.GetEntries()
-                                              where _entry.DateTime != DateTime.MinValue
-                                              select _entry;
-            //using (DbAppContext ctx = new DbAppContext())
-            //{
-            //    entriesDataGridView.ItemsSource = ctx.Entry.Where(item => item.DateTime != DateTime.MinValue).ToList();
-
-            //}
+            entriesDataGridView.ItemsSource = DatabaseControl.GetEntries();
         }
-
-        
     }
 }
