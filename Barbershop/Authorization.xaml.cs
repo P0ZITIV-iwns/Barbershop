@@ -27,9 +27,15 @@ namespace Barbershop
             using (DbAppContext ctx = new DbAppContext())
             {
                 var currentAdmin = ctx.Employee.FirstOrDefault(u => u.Login == loginTextBox.Text && (u.Password == passwordPasswordBox.Password || u.Password == passwordTextBox.Text) && u.Post == "Администратор");
+                var currentMaster = ctx.Employee.FirstOrDefault(u => u.Login == loginTextBox.Text && (u.Password == passwordPasswordBox.Password || u.Password == passwordTextBox.Text) && u.Post == "Парикмахер");
                 if (currentAdmin != null)
                 {
-                    var window = new AdminMainWindow();
+                    var window = new AdminMainWindow(currentAdmin);
+                    window.Show();
+                    this.Close();
+                }else if (currentMaster != null)
+                {
+                    var window = new MasterMainWindow(currentMaster);
                     window.Show();
                     this.Close();
                 }

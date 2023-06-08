@@ -35,7 +35,7 @@
             </Grid>
             <DataGrid DockPanel.Dock="Top" Grid.Row="1" Name="entriesDataGridView" AutoGenerateColumns="False" ScrollViewer.VerticalScrollBarVisibility="Hidden" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}">
                 <DataGrid.ContextMenu>
-                    <ContextMenu>
+                    <ContextMenu x:Name="menu">
                         <MenuItem Header="Редактировать" Click="editEntryButton_Click"/>
                         <MenuItem Header="Записать на основе данных" Click="addEntryButton_Click"/>
                         <MenuItem Header="Отменить" Click="cancelEntryButton_Click"/>
@@ -62,7 +62,7 @@
                     </DataGridTextColumn>
                     <DataGridTextColumn Header="Статус" Binding="{Binding Path=Status}" CanUserResize="False" Width="*" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Сумма" Binding="{Binding Path=ServiceEntity.Price}" CanUserResize="False" Width="*" IsReadOnly="True"/>
-                    <DataGridTemplateColumn Header="Операция" IsReadOnly="True" Width="0.7*">
+                    <DataGridTemplateColumn Header="Операция" IsReadOnly="True" Width="0.7*" x:Name="operationColumn">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">

@@ -17,31 +17,58 @@ namespace Barbershop
 {
     public partial class EntryDataPage : Page
     {
-        public EntryDataPage()
+        private Employee _employee;
+        public EntryDataPage(Employee employee)
         {
-            InitializeComponent();
-
-            entriesDataGridView.ItemsSource = DatabaseControl.GetEntries();
-            //using (DbAppContext ctx = new DbAppContext())
-            //{
-            //    entriesDataGridView.ItemsSource = ctx.Entry.Where(item => item.DateTime != DateTime.MinValue).ToList();
-
-            //}
+            _employee = employee;
+            using (DbAppContext ctx = new DbAppContext())
+            {
+                InitializeComponent();
+                if (_employee.Post == "Парикмахер")
+                {
+                    entriesDataGridView.ItemsSource = from _entry in DatabaseControl.GetEntries()
+                                                      where _entry.ID_employee == _employee.Id
+                                                      select _entry;
+                    operationColumn.Visibility = Visibility.Collapsed;
+                    addEntryButton.Visibility = Visibility.Collapsed;
+                    menu.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    entriesDataGridView.ItemsSource = DatabaseControl.GetEntries();
+                }
+            }
         }
         private void searchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            entriesDataGridView.ItemsSource = from _entry in DatabaseControl.GetEntries()
-                                              where !string.IsNullOrWhiteSpace(_entry.DateTime.ToString()) &&
-                                              (
-                                                  _entry.ClientEntity.FirstName.ToLower().Contains(searchTextBox.Text.ToLower()) ||
-                                                  _entry.ClientEntity.Phone.Contains(searchTextBox.Text) ||
-                                                  _entry.EmployeeEntity.LastName.ToLower().Contains(searchTextBox.Text.ToLower()) ||
-                                                  _entry.EmployeeEntity.FirstName.ToLower().Contains(searchTextBox.Text.ToLower()) ||
-                                                  _entry.ServiceEntity.Name.ToLower().Contains(searchTextBox.Text.ToLower()) ||
-                                                  _entry.Status.ToLower().Contains(searchTextBox.Text.ToLower()) ||
-                                                  _entry.DateTime.ToString().Contains(searchTextBox.Text)
-                                              )
-                                              select _entry;
+            if (_employee.Post == "Парикмахер")
+            {
+                entriesDataGridView.ItemsSource = from _entry in DatabaseControl.GetEntries()
+                                                  where _entry.ID_employee == _employee.Id &&
+                                                  (
+                                                      _entry.ClientEntity.FirstName.ToLower().Contains(searchTextBox.Text.ToLower()) ||
+                                                      _entry.ClientEntity.Phone.Contains(searchTextBox.Text) ||
+                                                      _entry.ServiceEntity.Name.ToLower().Contains(searchTextBox.Text.ToLower()) ||
+                                                      _entry.Status.ToLower().Contains(searchTextBox.Text.ToLower()) ||
+                                                      _entry.DateTime.ToString().Contains(searchTextBox.Text)
+                                                  )
+                                                  select _entry;
+            }
+            else
+            {
+                entriesDataGridView.ItemsSource = from _entry in DatabaseControl.GetEntries()
+                                                  where
+                                                  (
+                                                      _entry.ClientEntity.FirstName.ToLower().Contains(searchTextBox.Text.ToLower()) ||
+                                                      _entry.ClientEntity.Phone.Contains(searchTextBox.Text) ||
+                                                      _entry.EmployeeEntity.LastName.ToLower().Contains(searchTextBox.Text.ToLower()) ||
+                                                      _entry.EmployeeEntity.FirstName.ToLower().Contains(searchTextBox.Text.ToLower()) ||
+                                                      _entry.ServiceEntity.Name.ToLower().Contains(searchTextBox.Text.ToLower()) ||
+                                                      _entry.Status.ToLower().Contains(searchTextBox.Text.ToLower()) ||
+                                                      _entry.DateTime.ToString().Contains(searchTextBox.Text)
+                                                  )
+                                                  select _entry;
+            }
         }
         private void searchImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {

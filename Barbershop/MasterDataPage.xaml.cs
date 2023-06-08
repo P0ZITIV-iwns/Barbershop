@@ -21,10 +21,6 @@ namespace Barbershop
         {
             InitializeComponent();
             employeesDataGridView.ItemsSource = DatabaseControl.GetEmployees();
-            using (DbAppContext ctx = new DbAppContext())
-            {
-                employeesDataGridView.ItemsSource = ctx.Employee.Where(item => item.Post != "Администратор").ToList();
-            }
         }
         private void searchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -42,6 +38,43 @@ namespace Barbershop
         private void searchImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             searchTextBox.Focus();
+        }
+
+
+        // добавление сотрудника
+        private void addEmployeeButton_Click(object sender, RoutedEventArgs e)
+        {
+            Employee employee = null;
+            AddEditEmployeeWindow win = new AddEditEmployeeWindow(employee);
+            win.ShowDialog();
+            RefreshTable();
+        }
+        // редактирование сотрудника
+        private void editEmployeeButton_Click(object sender, RoutedEventArgs e)
+        {
+            Employee employee = employeesDataGridView.SelectedItem as Employee;
+            if (employee != null)
+            {
+                AddEditEmployeeWindow win = new AddEditEmployeeWindow(employee);
+                win.ShowDialog();
+                RefreshTable();
+            }
+        }
+        // удаление сотрудника
+        private void deleteEmployeeButton_Click(object sender, RoutedEventArgs e)
+        {
+            Employee employee = employeesDataGridView.SelectedItem as Employee;
+            if (employee != null)
+            {
+                DatabaseControl.RemoveEmployee(employee);
+                RefreshTable();
+            }
+        }
+        // обновление таблиц с данными сотрудников
+        public void RefreshTable()
+        {
+            employeesDataGridView.ItemsSource = null;
+            employeesDataGridView.ItemsSource = DatabaseControl.GetEmployees();
         }
     }
 }

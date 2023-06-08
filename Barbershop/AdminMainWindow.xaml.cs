@@ -16,10 +16,12 @@ namespace Barbershop
 {
     public partial class AdminMainWindow : Window
     {
-        public AdminMainWindow()
+        public Employee _currentAdmin;
+        public AdminMainWindow(Employee currentAdmin)
         {
             InitializeComponent();
-            this.mainAdminFrame.Navigate(new EntryDataPage());
+            _currentAdmin = currentAdmin;
+            this.mainAdminFrame.Navigate(new EntryDataPage(_currentAdmin));
         }
 
         private void Logout_Click(object sender, RoutedEventArgs e)
@@ -37,7 +39,7 @@ namespace Barbershop
             EmployeeDataButton.IsDefault = false;
             FinanceDataButton.IsDefault = false;
 
-            this.mainAdminFrame.Navigate(new EntryDataPage());
+            this.mainAdminFrame.Navigate(new EntryDataPage(_currentAdmin));
         }
         private void ClientDataButton_Click(object sender, RoutedEventArgs e)
         {

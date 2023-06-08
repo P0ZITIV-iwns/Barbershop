@@ -15,8 +15,8 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Border CornerRadius="6" BorderBrush="Black" Background="White" BorderThickness="2" Padding="0" Margin="0 0 20 20">
-                                <StackPanel Margin="10" >
-                                    <Image Source="{Binding Path=Photo}" Height="150"/>
+                                <StackPanel Margin="10" Width="200" Height="220">
+                                    <Image Source="{Binding Path=FullPathToPhoto}" Height="190"/>
                                     <TextBlock FontSize="18" HorizontalAlignment="Center">
                                         <Run Text="{Binding Path=LastName}"/>
                                         <Run Text="{Binding Path=FirstName}"/>

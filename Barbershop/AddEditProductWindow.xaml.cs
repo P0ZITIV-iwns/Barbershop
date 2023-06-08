@@ -68,24 +68,25 @@ namespace Barbershop
         {
             if (Check())
             {
-                _tempProduct.Name = nameTextBox.Text;
-                _tempProduct.Category = (string)categoryComboBox.SelectedValue;
-                _tempProduct.Description = descriptionTextBox.Text;
-                _tempProduct.Price = Convert.ToDecimal(priceTextBox.Text);
                 if (_tempProduct.Image != "Images/Products/noProductImage.png")
                 {
-                    File.Delete(_tempProduct.FullPathToImage);
+                    if (_img != null)
+                    {
+                        File.Delete(_tempProduct.FullPathToImage);
+                    } 
                 }
-                if (_img == null)
-                {
-                    _tempProduct.Image = "Images/Products/noProductImage.png";
-                }
-                else
+                if (_img != null)
                 {
                     filePath = System.IO.Path.Combine(_imageSource, _img.SafeFileName);
                     File.Copy(_img.FileName, filePath, true);
                     _tempProduct.Image = System.IO.Path.Combine(_imageSourceToDatabase, _img.SafeFileName);
                 }
+
+
+                _tempProduct.Name = nameTextBox.Text;
+                _tempProduct.Category = (string)categoryComboBox.SelectedValue;
+                _tempProduct.Description = descriptionTextBox.Text;
+                _tempProduct.Price = Convert.ToDecimal(priceTextBox.Text);
                 DatabaseControl.UpdateProduct(_tempProduct);
                 Close();
             }

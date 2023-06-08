@@ -19,5 +19,7 @@ namespace Barbershop
         public string Phone { get; set; }
         public string Photo { get; set; }
         public List<Entry> EntryEntities { get; set; }
+
+        public string FullPathToPhoto => Environment.CurrentDirectory + "\\..\\..\\..\\" + Photo;
     }
 }

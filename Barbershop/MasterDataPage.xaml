@@ -14,9 +14,9 @@
             <RowDefinition Height="3*"/>
             <RowDefinition MaxHeight="100"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="Сотрудники" FontSize="44" FontWeight="Bold" Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Сотрудники" FontSize="44" FontWeight="Bold" Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <DockPanel Grid.Row="1">
-            <Grid DockPanel.Dock="Top" Margin="20 20 20 0" >
+            <Grid DockPanel.Dock="Top" Margin="20 20 20 0" x:Name="searchGrid">
                 <TextBox x:Name="searchTextBox" Padding="35 0 10 0" TextChanged="searchTextBox_TextChanged" Style="{StaticResource PlaceholderTextBoxStyle}"/>
                 <TextBlock Margin="37 0" VerticalAlignment="Center" IsHitTestVisible="False" FontSize="14" Text="Поиск" Foreground="Black" Opacity="0.6">
                     <TextBlock.Style>
@@ -35,8 +35,8 @@
             <DataGrid DockPanel.Dock="Top" Grid.Row="1" Name="employeesDataGridView" AutoGenerateColumns="False" ScrollViewer.VerticalScrollBarVisibility="Hidden" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}">
                 <DataGrid.ContextMenu>
                     <ContextMenu>
-                        <MenuItem Header="Редактировать" />
-                        <MenuItem Header="Удалить" />
+                        <MenuItem Header="Редактировать" Click="editEmployeeButton_Click"/>
+                        <MenuItem x:Name="deleteMenu" Header="Удалить" Click="deleteEmployeeButton_Click"/>
                     </ContextMenu>
                 </DataGrid.ContextMenu>
                 <DataGrid.Columns>
@@ -51,10 +51,10 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Style="{StaticResource gridEditButton}">
+                                    <Button Style="{StaticResource gridEditButton}" Click="editEmployeeButton_Click">
                                         <Image Source="Images/edit.png" Style="{StaticResource gridButtonImage}"/>
                                     </Button>
-                                    <Button Style="{StaticResource gridRemoveButton}">
+                                    <Button Style="{StaticResource gridRemoveButton}" Click="deleteEmployeeButton_Click">
                                         <Image Source="Images/remove.png" Style="{StaticResource gridButtonImage}"/>
                                     </Button>
                                 </StackPanel>
@@ -64,5 +64,6 @@
                 </DataGrid.Columns>
             </DataGrid>
         </DockPanel>
+        <Button Grid.Row="2" x:Name="addEmployeeButton" Content="Добавить" Width="250" Margin="20" Click="addEmployeeButton_Click" Style="{StaticResource DefaultButtonStyle}"/>
     </Grid>
 </Page>

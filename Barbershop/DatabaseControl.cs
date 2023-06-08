@@ -26,11 +26,7 @@ namespace Barbershop
         {
             using (DbAppContext ctx = new DbAppContext())
             {
-                List<Employee> _employees = ctx.Employee.ToList();
-                _employees.Insert(0, new Employee { Post = "Администратор" });
-                _employees.Insert(1, new Employee { Post = "Парикмахер" });
-                _employees = ctx.Employee.Where(item => !string.IsNullOrEmpty(item.Phone)).ToList();
-                return _employees;
+                return ctx.Employee.Include(p => p.EntryEntities).ToList();
             }
         }
         public static List<Product> GetProducts()
@@ -190,6 +186,50 @@ namespace Barbershop
             {
                 ctx.Client.Remove(client);
                 ctx.SaveChanges();
+            }
+        }
+
+        // СОТРУДНИКИ (ДОБАВЛЕНИЕ, РЕДАКТИРОВАНИЕ, УДАЛЕНИЕ)
+        public static void AddEmployee(Employee employee)
+        {
+            using (DbAppContext ctx = new DbAppContext())
+            {
+                ctx.Employee.Add(employee);
+                ctx.SaveChanges();
+            }
+        }
+        public static void UpdateEmployee(Employee employee)
+        {
+            using (DbAppContext ctx = new DbAppContext())
+            {
+                Employee _employee = ctx.Employee.FirstOrDefault(p => p.Id == employee.Id);
+
+                if (_employee == null)
+                {
+                    return;
+                }
+                _employee.LastName = employee.LastName;
+                _employee.FirstName = employee.FirstName;
+                _employee.Patronymic = employee.Patronymic;
+                _employee.Login = employee.Login;
+                _employee.Password = employee.Password;
+                _employee.Phone = employee.Phone;
+                _employee.Photo = employee.Photo;
+                _employee.Id = employee.Id;
+
+                ctx.SaveChanges();
+            }
+        }
+        public static void RemoveEmployee(Employee employee)
+        {
+            using (DbAppContext ctx = new DbAppContext())
+            {
+                ctx.Employee.Remove(employee);
+                ctx.SaveChanges();
+            }
+            if (employee.Photo != "Images/Employees/noEmployeeImage.png")
+            {
+                File.Delete(employee.FullPathToPhoto);
             }
         }
 
