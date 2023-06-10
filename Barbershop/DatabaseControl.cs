@@ -62,8 +62,7 @@ namespace Barbershop
                 _entries.Insert(1, new Entry { Status = "Назначена" });
                 _entries.Insert(2, new Entry { Status = "В процессе" });
                 _entries.Insert(3, new Entry { Status = "Завершена" });
-                _entries.Insert(4, new Entry { Status = "Отменена" });
-                _entries = ctx.Entry.Where(item => item.DateTime != DateTime.MinValue).ToList();
+                _entries.Insert(4, new Entry { Status = "Отменена" });  
                 return _entries;
             }
         }
