@@ -147,7 +147,7 @@ namespace Barbershop
                 }
                 if (!string.IsNullOrEmpty(patronymic) && !Regex.IsMatch(patronymic, "^[а-яА-Яa-zA-Z]{2,}$"))
                 {
-                    MessageBox.Show("Отчество должна содержать не менее двух символов и состоять только из букв русского или английского алфавита!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Отчество должно содержать не менее двух символов и состоять только из букв русского или английского алфавита!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     return false;
                 }
 
