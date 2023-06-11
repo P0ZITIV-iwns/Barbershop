@@ -130,7 +130,7 @@ namespace Barbershop
                 string password = passwordTextBox.Text.Trim();
                 string phoneNumber = phoneTextBox.Text.Trim();
 
-                if (string.IsNullOrEmpty(lastName) && string.IsNullOrEmpty(firstName) && string.IsNullOrEmpty(patronymic)  && string.IsNullOrEmpty(phoneNumber) && string.IsNullOrEmpty(login) && string.IsNullOrEmpty(password) && string.IsNullOrEmpty(phoneNumber))
+                if (string.IsNullOrEmpty(lastName) && string.IsNullOrEmpty(firstName) && string.IsNullOrEmpty(phoneNumber) && string.IsNullOrEmpty(login) && string.IsNullOrEmpty(password) && string.IsNullOrEmpty(phoneNumber))
                 {
                     MessageBox.Show("Все поля для ввода обязательны!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     return false;
@@ -145,9 +145,9 @@ namespace Barbershop
                     MessageBox.Show("Имя должно содержать не менее двух символов и состоять только из букв русского или английского алфавита!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     return false;
                 }
-                if (!Regex.IsMatch(patronymic, "^[а-яА-Яa-zA-Z]{2,}$"))
+                if (!string.IsNullOrEmpty(patronymic) && !Regex.IsMatch(patronymic, "^[а-яА-Яa-zA-Z]{2,}$"))
                 {
-                    MessageBox.Show("Отчество должно содержать не менее двух символов и состоять только из букв русского или английского алфавита!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Отчество должна содержать не менее двух символов и состоять только из букв русского или английского алфавита!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     return false;
                 }
 

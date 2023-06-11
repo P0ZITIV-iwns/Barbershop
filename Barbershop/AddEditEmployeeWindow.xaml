@@ -55,7 +55,7 @@
             </TextBlock>
 
             <TextBox Grid.Row="2" x:Name="patronymicTextBox" Margin="25 10" MaxLength="20" Style="{StaticResource PlaceholderTextBoxStyle}"/>
-            <TextBlock Grid.Row="2" Margin="37 0" VerticalAlignment="Center" IsHitTestVisible="False" FontSize="14" Text="Введите отчество" Foreground="Black" Opacity="0.6">
+            <TextBlock Grid.Row="2" Margin="37 0" VerticalAlignment="Center" IsHitTestVisible="False" FontSize="14" Text="Введите отчество (если есть)" Foreground="Black" Opacity="0.6">
                 <TextBlock.Style>
                     <Style TargetType="{x:Type TextBlock}">
                         <Setter Property="Visibility" Value="Collapsed"/>

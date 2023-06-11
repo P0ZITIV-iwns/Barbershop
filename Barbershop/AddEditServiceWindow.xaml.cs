@@ -79,7 +79,7 @@ namespace Barbershop
         {
             using (DbAppContext ctx = new DbAppContext())
             {
-                string name = _tempService.Name.Trim();
+                string name = nameTextBox.Text.Trim();
                 string category = categoryComboBox.Text.Trim();
                 string duration = durationTextBox.Text;
                 string price = priceTextBox.Text;
@@ -125,9 +125,9 @@ namespace Barbershop
                     MessageBox.Show("Продолжительность должна принимать целые числа!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     return false;
                 }
-                if (int.Parse(duration) <= 0)
+                if (int.Parse(duration) <= 0 || int.Parse(duration) > 480)
                 {
-                    MessageBox.Show("Продолжительность не может быть меньше или равна нулю!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Продолжительность не может быть меньше или равна нулю и не может быть больше 480!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     return false;
                 }
                 if (!decimal.TryParse(price, out decimal Price))
