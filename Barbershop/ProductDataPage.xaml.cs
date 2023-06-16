@@ -22,7 +22,7 @@ namespace Barbershop
             InitializeComponent();
             using (DbAppContext ctx = new DbAppContext())
             {
-                productsDataGridView.ItemsSource = ctx.Product.Where(item => !string.IsNullOrEmpty(item.Name)).ToList();
+                productsDataGridView.ItemsSource = ctx.Product.Where(item => !string.IsNullOrEmpty(item.Name)).OrderBy(item => item.Category).ThenBy(item => item.Id).ToList();
             }
         }
         private void AboutProductMenuItem_Click(object sender, RoutedEventArgs e)

@@ -35,7 +35,7 @@ namespace Barbershop
                                                   group _service
                                                   by _service.Category;
             serviceNameComboBox.ItemsSource = from _service in DatabaseControl.GetServices()
-                                              where !string.IsNullOrEmpty(_service.Name)
+                                              where !string.IsNullOrEmpty(_service.Name) && !_service.Name.Contains("(архив)")
                                               group _service
                                               by _service.Name;
             employeeNameComboBox.ItemsSource = from _emloyee in DatabaseControl.GetEmployees()
@@ -55,14 +55,14 @@ namespace Barbershop
             if (textBlock.Text == "Мужская")
             {
                 serviceNameComboBox.ItemsSource = from _service in DatabaseControl.GetServices()
-                                                  where _service.Category == "Мужская" && !string.IsNullOrEmpty(_service.Name)
+                                                  where _service.Category == "Мужская" && !string.IsNullOrEmpty(_service.Name) && !_service.Name.Contains("(архив)")
                                                   group _service
                                                   by _service.Name;
             }
             else
             {
                 serviceNameComboBox.ItemsSource = from _service in DatabaseControl.GetServices()
-                                                  where _service.Category == "Женская" && !string.IsNullOrEmpty(_service.Name)
+                                                  where _service.Category == "Женская" && !string.IsNullOrEmpty(_service.Name) && !_service.Name.Contains("(архив)")
                                                   group _service
                                                   by _service.Name;
             }
@@ -81,7 +81,7 @@ namespace Barbershop
             if (textBlock.Text == "Мужская")
             {
                 serviceNameComboBox.ItemsSource = from _service in DatabaseControl.GetServices()
-                                                  where _service.Category == "Мужская" && !string.IsNullOrEmpty(_service.Name)
+                                                  where _service.Category == "Мужская" && !string.IsNullOrEmpty(_service.Name) && !_service.Name.Contains("(архив)")
                                                   group _service
                                                   by _service.Name;
 
@@ -89,7 +89,7 @@ namespace Barbershop
             else
             {
                 serviceNameComboBox.ItemsSource = from _service in DatabaseControl.GetServices()
-                                                  where _service.Category == "Женская" && !string.IsNullOrEmpty(_service.Name)
+                                                  where _service.Category == "Женская" && !string.IsNullOrEmpty(_service.Name) && !_service.Name.Contains("(архив)")
                                                   group _service
                                                   by _service.Name;
             }

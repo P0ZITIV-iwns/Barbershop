@@ -31,7 +31,7 @@ namespace Barbershop
                         select new
                         {
                             ServiceName = service.Name,
-                            ServicePrice = service.Price,
+                            ServicePriceNoEdit = service.Price,
                             EmployeeLastName = employee.LastName,
                             EmployeeFirstName = employee.FirstName,
                             finance.Id,

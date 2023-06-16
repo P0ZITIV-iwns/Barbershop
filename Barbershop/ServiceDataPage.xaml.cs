@@ -52,6 +52,11 @@ namespace Barbershop
             Service service = servicesDataGridView.SelectedItem as Service;
             if (service != null)
             {
+                if (service.Name.Contains("(архив)"))
+                {
+                    MessageBox.Show("Услуги с пометкой архив нельзя редактировать!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
                 AddEditServiceWindow win = new AddEditServiceWindow(service);
                 win.ShowDialog();
                 RefreshTable();

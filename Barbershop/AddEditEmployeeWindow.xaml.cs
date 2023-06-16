@@ -32,12 +32,38 @@ namespace Barbershop
                 headerWindow.Text = "Добавление";
                 saveAddButton.Visibility = Visibility.Visible;
                 saveEditButton.Visibility = Visibility.Collapsed;
+                returnButton.Visibility = Visibility.Collapsed;
             }
             else
             {
                 headerWindow.Text = "Редактирование";
-                saveAddButton.Visibility = Visibility.Collapsed;
-                saveEditButton.Visibility = Visibility.Visible;
+                if (employee.Post == "Парикмахер")
+                {
+                    saveAddButton.Visibility = Visibility.Collapsed;
+                    saveEditButton.Visibility = Visibility.Visible;
+                    returnButton.Visibility = Visibility.Collapsed;
+                    lastNameTextBox.IsEnabled = true;
+                    firstNameTextBox.IsEnabled = true;
+                    patronymicTextBox.IsEnabled = true;
+                    loginTextBox.IsEnabled = true;
+                    passwordTextBox.IsEnabled = true;
+                    phoneTextBox.IsEnabled = true;
+                    addImageButton.IsEnabled = true;
+                }
+                else
+                {
+                    saveAddButton.Visibility = Visibility.Collapsed;
+                    saveEditButton.Visibility = Visibility.Collapsed;
+                    returnButton.Visibility = Visibility.Visible;
+                    lastNameTextBox.IsEnabled = false;
+                    firstNameTextBox.IsEnabled = false;
+                    patronymicTextBox.IsEnabled = false;
+                    loginTextBox.IsEnabled = false;
+                    passwordTextBox.IsEnabled = false;
+                    phoneTextBox.IsEnabled = false;
+                    addImageButton.IsEnabled = false;
+                }
+                
                 _tempEmployee = employee;
 
                 lastNameTextBox.Text = employee.LastName;
@@ -50,6 +76,32 @@ namespace Barbershop
 
         }
 
+        private void returnButton_Click(object sender, RoutedEventArgs e)
+        {
+            using (DbAppContext ctx = new DbAppContext())
+            {
+                Employee _employee = ctx.Employee.FirstOrDefault(p => p.Id == _tempEmployee.Id);
+                if (_employee == null)
+                {
+                    return;
+                }
+                if (_employee.Post == "Парикмахер (уволен)")
+                {
+                    _employee.Post = "Парикмахер";
+                    ctx.SaveChanges();
+                    saveAddButton.Visibility = Visibility.Collapsed;
+                    saveEditButton.Visibility = Visibility.Visible;
+                    returnButton.Visibility = Visibility.Collapsed;
+                    lastNameTextBox.IsEnabled = true;
+                    firstNameTextBox.IsEnabled = true;
+                    patronymicTextBox.IsEnabled = true;
+                    loginTextBox.IsEnabled = true;
+                    passwordTextBox.IsEnabled = true;
+                    phoneTextBox.IsEnabled = true;
+                    addImageButton.IsEnabled = true;
+                }
+            }
+        }
         private void addImageButton_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();

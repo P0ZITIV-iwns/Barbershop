@@ -43,7 +43,7 @@
                     <DataGridTextColumn Header="Фамилия" Binding="{Binding Path=LastName}" Width="*" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Имя" Binding="{Binding Path=FirstName}" Width="*" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Отчество" Binding="{Binding Path=Patronymic}" Width="*" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Должность" Binding="{Binding Path=Post}" Width="*" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Должность" Binding="{Binding Path=Post}" Width="1.25*" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Телефон" Binding="{Binding Path=Phone}" Width="*" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Логин" Binding="{Binding Path=Login}" Width="*" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Пароль" Binding="{Binding Path=Password}" Width="*" IsReadOnly="True"/>

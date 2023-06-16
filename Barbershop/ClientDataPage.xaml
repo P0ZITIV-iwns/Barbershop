@@ -48,10 +48,10 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Style="{StaticResource gridEditButton}" Click="editClientButton_Click">
+                                    <Button Style="{StaticResource gridEditButton}" Margin="18 0 0 0" Click="editClientButton_Click">
                                         <Image Source="Images/edit.png" Style="{StaticResource gridButtonImage}"/>
                                     </Button>
-                                    <Button Style="{StaticResource gridRemoveButton}" Click="deleteClientButton_Click">
+                                    <Button Style="{StaticResource gridRemoveButton}" Visibility="Collapsed" Click="deleteClientButton_Click">
                                         <Image Source="Images/remove.png" Style="{StaticResource gridButtonImage}"/>
                                     </Button>
                                 </StackPanel>

@@ -17,7 +17,7 @@ namespace Barbershop
                 List<Service> _services = ctx.Service.ToList();
                 _services.Insert(0, new Service { Category = "Мужская" });
                 _services.Insert(1, new Service { Category = "Женская" });
-                _services = ctx.Service.Where(item => !string.IsNullOrEmpty(item.Name)).ToList();
+                _services = ctx.Service.Where(item => !string.IsNullOrEmpty(item.Name)).OrderByDescending(item => item.Category).ThenBy(item => item.Id).ToList();
                 return _services;
                 //return ctx.Service.Include(p => p.EntryEntities).ToList();
             }
@@ -62,7 +62,8 @@ namespace Barbershop
                 _entries.Insert(1, new Entry { Status = "Назначена" });
                 _entries.Insert(2, new Entry { Status = "В процессе" });
                 _entries.Insert(3, new Entry { Status = "Завершена" });
-                _entries.Insert(4, new Entry { Status = "Отменена" });  
+                _entries.Insert(4, new Entry { Status = "Отменена" });
+                _entries = ctx.Entry.OrderByDescending(p => p.Id).ToList();
                 return _entries;
             }
         }
@@ -71,7 +72,7 @@ namespace Barbershop
         {
             using (DbAppContext ctx = new DbAppContext())
             {
-                return ctx.Finance.Include(p => p.EntryEntity).ToList();
+                return ctx.Finance.Include(p => p.EntryEntity).OrderByDescending(p => p.Id).ToList();
             }
         }
         // УСЛУГИ (ДОБАЛВЕНИЕ, РЕДАКТИРОВАНИЕ, УДАЛЕНИЕ)
@@ -105,8 +106,17 @@ namespace Barbershop
         {
             using (DbAppContext ctx = new DbAppContext())
             {
-                ctx.Service.Remove(service);
-                ctx.SaveChanges();
+                Service _service = ctx.Service.FirstOrDefault(p => p.Id == service.Id);
+                if (_service == null)
+                {
+                    return;
+                }
+                if (!_service.Name.Contains("(архив)"))
+                {
+                    string archive = _service.Name + " (архив)";
+                    _service.Name = archive;
+                    ctx.SaveChanges();
+                }
             }
         }
 
@@ -223,9 +233,14 @@ namespace Barbershop
         {
             using (DbAppContext ctx = new DbAppContext())
             {
-                if (employee.Post == "Парикмахер")
+                Employee _employee = ctx.Employee.FirstOrDefault(p => p.Id == employee.Id);
+                if (_employee == null)
                 {
-                    ctx.Employee.Remove(employee);
+                    return;
+                }
+                if (_employee.Post == "Парикмахер")
+                {
+                    _employee.Post = "Парикмахер (уволен)";
                     ctx.SaveChanges();
                 } 
             }

@@ -21,6 +21,7 @@ namespace Barbershop
         {
             InitializeComponent();
             clientsDataGridView.ItemsSource = DatabaseControl.GetClients();
+
         }
         private void searchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {

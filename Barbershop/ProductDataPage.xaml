@@ -41,7 +41,7 @@
                     </ContextMenu>
                 </DataGrid.ContextMenu>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Наименование" Binding="{Binding Path=Name}" Width="Auto" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Наименование" Binding="{Binding Path=Name}" Width="4*" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Категория" Binding="{Binding Path=Category}" Width="*" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Стоимость" Binding="{Binding Path=Price}" Width="*" IsReadOnly="True"/>
                     <DataGridTemplateColumn Header="Операция" IsReadOnly="True" Width="0.6*">
