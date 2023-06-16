@@ -42,7 +42,7 @@
                     </ContextMenu>
                 </DataGrid.ContextMenu>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Дата и время" Binding="{Binding Path=DateTime, StringFormat=\{0:dd.MM.yyyy HH:mm\}}" Width="*" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Дата и время" Binding="{Binding Path=DateTime, StringFormat=\{0:dd.MM.yyyy HH:mm\}}" Width="0.85*" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Клиент" Width="*" IsReadOnly="True">
                         <DataGridTextColumn.Binding>
                             <MultiBinding StringFormat="{}{0}, {1}">
@@ -61,7 +61,7 @@
                         </DataGridTextColumn.Binding>
                     </DataGridTextColumn>
                     <DataGridTextColumn Header="Статус" Binding="{Binding Path=Status}" CanUserResize="False" Width="*" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Сумма" Binding="{Binding Path=ServiceEntity.Price}" CanUserResize="False" Width="*" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Сумма" Binding="{Binding Path=Amount}" CanUserResize="False" Width="*" IsReadOnly="True"/>
                     <DataGridTemplateColumn Header="Операция" IsReadOnly="True" Width="0.7*" x:Name="operationColumn">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

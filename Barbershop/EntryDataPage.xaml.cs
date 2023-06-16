@@ -116,7 +116,7 @@ namespace Barbershop
                         DatabaseControl.AddFinance(new Finance
                         {
                             ID_entry = entry.Id,
-                            DateTime = DateTime.SpecifyKind(Convert.ToDateTime(newDateTime), DateTimeKind.Utc)
+                            DateTime = DateTime.SpecifyKind(Convert.ToDateTime(newDateTime), DateTimeKind.Utc) 
                         });
                     }
                 }

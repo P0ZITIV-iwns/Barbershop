@@ -22,9 +22,9 @@
             </Grid.ColumnDefinitions>
             <DataGrid Name="financeDataGridView" AutoGenerateColumns="False" ScrollViewer.VerticalScrollBarVisibility="Hidden" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Дата и время" Binding="{Binding Path=DateTime, StringFormat=\{0:dd.MM.yyyy HH:mm\}}" Width="*" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Дата и время" Binding="{Binding Path=DateTime, StringFormat=\{0:dd.MM.yyyy HH:mm\}}" Width="0.7*" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Услуга" Binding="{Binding Path=ServiceName}" Width="2*" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Сумма" Binding="{Binding Path=ServicePriceNoEdit}" Width="*" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Сумма" Binding="{Binding Path=EntryAmount}" Width="*" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Мастер" Width="*" IsReadOnly="True">
                         <DataGridTextColumn.Binding>
                             <MultiBinding StringFormat="{}{0} {1}">

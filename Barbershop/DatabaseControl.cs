@@ -271,6 +271,7 @@ namespace Barbershop
                 }
                 _entry.DateTime = entry.DateTime;
                 _entry.Status = entry.Status;
+                _entry.Amount = entry.Amount;
                 _entry.ID_employee = entry.ID_employee;
                 _entry.ID_client = entry.ID_client;
                 _entry.ID_service = entry.ID_service;

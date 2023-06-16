@@ -13,6 +13,7 @@ namespace Barbershop
         [Key] public int Id { get; set; }
         public DateTime DateTime { get; set; }
         public string Status { get; set; }
+        public decimal Amount { get; set; }
         [ForeignKey("ClientEntity")] public int ID_client { get; set; }
         [ForeignKey("EmployeeEntity")] public int ID_employee { get; set; }
         [ForeignKey("ServiceEntity")]  public int ID_service { get; set; }

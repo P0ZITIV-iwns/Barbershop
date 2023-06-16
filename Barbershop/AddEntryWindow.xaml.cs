@@ -139,6 +139,7 @@ namespace Barbershop
                         ID_client = currentClient.Id,
                         ID_employee = currentEmployee.Id,
                         ID_service = currentService.Id,
+                        Amount = currentService.Price,
                         DateTime = DateTime.SpecifyKind(Convert.ToDateTime(dateTimeTextBox.Text), DateTimeKind.Utc),
                         Status = "Согласование"
                     });
