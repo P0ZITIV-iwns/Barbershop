@@ -37,7 +37,7 @@
                 <DataGrid.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header="Редактировать" Click="editClientButton_Click"/>
-                        <MenuItem Header="Удалить" Click="deleteClientButton_Click"/>
+                        <!--<MenuItem Header="Удалить" Click="deleteClientButton_Click"/>-->
                     </ContextMenu>
                 </DataGrid.ContextMenu>
                 <DataGrid.Columns>
@@ -51,9 +51,9 @@
                                     <Button Style="{StaticResource gridEditButton}" Margin="18 0 0 0" Click="editClientButton_Click">
                                         <Image Source="Images/edit.png" Style="{StaticResource gridButtonImage}"/>
                                     </Button>
-                                    <Button Style="{StaticResource gridRemoveButton}" Visibility="Collapsed" Click="deleteClientButton_Click">
+                                    <!--<Button Style="{StaticResource gridRemoveButton}" Click="deleteClientButton_Click">
                                         <Image Source="Images/remove.png" Style="{StaticResource gridButtonImage}"/>
-                                    </Button>
+                                    </Button>-->
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>

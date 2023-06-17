@@ -12,7 +12,6 @@ namespace Barbershop
     {
         [Key] public int Id { get; set; }
         public DateTime DateTime { get; set; }
-        //public decimal Amount { get; set; }
         [ForeignKey("EntryEntity")] public int ID_entry { get; set; }
         //[ForeignKey("ProductEntity")] public int ID_product { get; set; }
         public Entry EntryEntity { get; set; }

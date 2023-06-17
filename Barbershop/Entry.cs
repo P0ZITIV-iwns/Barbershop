@@ -20,6 +20,6 @@ namespace Barbershop
         public Client ClientEntity { get; set; }
         public Employee EmployeeEntity { get; set; }
         public Service ServiceEntity { get; set; }
-        public List<Finance> FinanceEntities { get; set; }
+        public Finance FinanceEntities { get; set; }
     }
 }

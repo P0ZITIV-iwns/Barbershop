@@ -27,7 +27,7 @@ namespace Barbershop
             modelBuilder.Entity<Entry>().HasOne(p => p.ClientEntity).WithMany(p => p.EntryEntities);
             modelBuilder.Entity<Entry>().HasOne(p => p.EmployeeEntity).WithMany(p => p.EntryEntities);
             modelBuilder.Entity<Entry>().HasOne(p => p.ServiceEntity).WithMany(p => p.EntryEntities);
-            modelBuilder.Entity<Finance>().HasOne(p => p.EntryEntity).WithMany(p => p.FinanceEntities);
+            modelBuilder.Entity<Finance>().HasOne(p => p.EntryEntity).WithOne(p => p.FinanceEntities);
             //modelBuilder.Entity<Finance>().HasOne(p => p.ProductEntity).WithMany(p => p.FinanceEntities);
         }
     }

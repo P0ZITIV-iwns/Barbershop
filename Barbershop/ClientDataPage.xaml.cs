@@ -57,7 +57,7 @@ namespace Barbershop
             }
         }
         // удаление клиента
-        private void deleteClientButton_Click(object sender, RoutedEventArgs e)
+        /*private void deleteClientButton_Click(object sender, RoutedEventArgs e)
         {
             Client client = clientsDataGridView.SelectedItem as Client;
             if (client != null)
@@ -72,7 +72,7 @@ namespace Barbershop
                 DatabaseControl.RemoveClient(client);
                 RefreshTable();
             }
-        }
+        }*/
         // обновление таблиц с данными клиентов
         public void RefreshTable()
         {
