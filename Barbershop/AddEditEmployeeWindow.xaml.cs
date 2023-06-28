@@ -218,10 +218,16 @@ namespace Barbershop
                     MessageBox.Show("Номер телефона должен состоять из 10 цифр!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     return false;
                 }
-                var currentClients = ctx.Client.FirstOrDefault(c => c.Phone == phoneNumber);
-                if (currentClients != null && _tempEmployee == null)
+                var currentEmployeesPhone = ctx.Employee.FirstOrDefault(emp => emp.Phone == phoneNumber);
+                if (currentEmployeesPhone != null && _tempEmployee == null)
                 {
                     MessageBox.Show("Сотрудник с указанным номером телефона уже имеется в базе данных!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+                var currentEmployeesLogin = ctx.Employee.FirstOrDefault(emp => emp.Login == login);
+                if (currentEmployeesLogin != null && _tempEmployee == null)
+                {
+                    MessageBox.Show("Сотрудник с указанным логином уже имеется в базе данных!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     return false;
                 }
                 return true;
