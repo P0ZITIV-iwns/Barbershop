@@ -56,47 +56,123 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Images\add.png" />
-    <Resource Include="Images\changeStatus.png" />
-    <Resource Include="Images\edit.png" />
-    <Resource Include="Images\Employees\Ivan.jpg" />
-    <Resource Include="Images\Employees\Nikita.jpg" />
-    <Resource Include="Images\Employees\Nikolay.jpg" />
-    <Resource Include="Images\Employees\noEmployeeImage.png" />
-    <Resource Include="Images\Employees\Timur.jpg" />
-    <Resource Include="Images\Employees\Yuriy.jpg" />
-    <Resource Include="Images\hidePassword.png" />
-    <Resource Include="Images\Logo.png" />
-    <Resource Include="Images\Map.png" />
+    <Resource Include="Images\add.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\changeStatus.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\edit.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Employees\Ivan.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Employees\Nikita.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Employees\Nikolay.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Employees\noEmployeeImage.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Employees\Timur.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Employees\Yuriy.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\hidePassword.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Map.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Images\backArrow.png" />
-    <Resource Include="Images\Products\noProductImage.png" />
-    <Resource Include="Images\Products\Воск1.png" />
-    <Resource Include="Images\Products\Воск2.png" />
-    <Resource Include="Images\Products\Воск3.png" />
-    <Resource Include="Images\Products\Гель1.png" />
-    <Resource Include="Images\Products\Гель2.png" />
-    <Resource Include="Images\Products\Кондиционер1.png" />
-    <Resource Include="Images\Products\Кондиционер2.png" />
-    <Resource Include="Images\Products\Кондиционер3.png" />
-    <Resource Include="Images\Products\Краска1.png" />
-    <Resource Include="Images\Products\Краска2.png" />
-    <Resource Include="Images\Products\Краска3.png" />
-    <Resource Include="Images\Products\Краска4.png" />
-    <Resource Include="Images\Products\Лак1.png" />
-    <Resource Include="Images\Products\Лак2.png" />
-    <Resource Include="Images\Products\Лак3.png" />
-    <Resource Include="Images\Products\Лак4.png" />
-    <Resource Include="Images\Products\Лак5.png" />
-    <Resource Include="Images\Products\Шампунь1.png" />
-    <Resource Include="Images\Products\Шампунь2.png" />
-    <Resource Include="Images\Products\Шампунь3.png" />
-    <Resource Include="Images\Products\Шампунь4.png" />
-    <Resource Include="Images\remove.png" />
-    <Resource Include="Images\search.png" />
-    <Resource Include="Images\showPassword.png" />
+    <Resource Include="Images\backArrow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Products\noProductImage.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Products\Воск1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Products\Воск2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Products\Воск3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Products\Гель1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Products\Гель2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Products\Кондиционер1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Products\Кондиционер2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Products\Кондиционер3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Products\Краска1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Products\Краска2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Products\Краска3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Products\Краска4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Products\Лак1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Products\Лак2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Products\Лак3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Products\Лак4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Products\Лак5.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Products\Шампунь1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Products\Шампунь2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Products\Шампунь3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Products\Шампунь4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\remove.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\search.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\showPassword.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>

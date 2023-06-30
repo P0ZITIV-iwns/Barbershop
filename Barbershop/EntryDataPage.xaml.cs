@@ -35,7 +35,7 @@ namespace Barbershop
                 }
                 else
                 {
-                    entriesDataGridView.ItemsSource = from _entry in  DatabaseControl.GetEntries()
+                    entriesDataGridView.ItemsSource = from _entry in DatabaseControl.GetEntries()
                                                       where _entry.DateTime != DateTime.MinValue
                                                       select _entry;
                 }
