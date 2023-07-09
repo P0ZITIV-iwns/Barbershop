@@ -37,7 +37,7 @@ namespace Barbershop
             else
             {
                 headerWindow.Text = "Редактирование";
-                if (employee.Post == "Парикмахер")
+                if (employee.Post == "Парикмахер" || employee.Post == "Администратор")
                 {
                     saveAddButton.Visibility = Visibility.Collapsed;
                     saveEditButton.Visibility = Visibility.Visible;
