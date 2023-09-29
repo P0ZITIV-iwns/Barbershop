@@ -25,7 +25,7 @@
             </TextBlock>
             <TextBlock HorizontalAlignment="Center" FontSize="18" Margin="0 5 0 0">
                     <Run FontWeight="Bold" Text="Телефон:"/>
-                    <Run Text="Телефон: +7 (999) 777-66-66"/>
+                    <Run Text=" +7 (999) 777-66-66"/>
             </TextBlock>
             <TextBlock HorizontalAlignment="Center" FontSize="18" Margin="0 5 0 0">
                     <Run FontWeight="Bold" Text="Электронная почта:"/>
